@@ -1,0 +1,572 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi - Rent Agreement</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .rounded-md {
+        border-radius: 10px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-200">Section 8 Company Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Quick, Affordable Online Rent Agreement</h1>
+                <p class="mt-6 text-lg text-gray-800">Looking to get a registered rental agreement without any hassle?
+                    legalsathi offers perfect compliance for creating rental agreements. We ensure that the agreements are
+                    drafted, reviewed, and are in accordance with the law.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-blue-500 text-xl font-semibold">Book Service Now @ ₹ 251.00 only /- <span
+                        class="text-gray-600">(Including GST)</span></h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-blue-600">Proceed
+                        Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is a Rent Agreement -->
+    <section id="rent-agreement" class="container mx-8 py-12">
+        <h2 class="text-3xl font-bold text-blue-900 mb-6">What is a Rent Agreement?</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">A rental agreement is a recorded contract between the
+            landlord/lady of the property and the tenant taking it on rent. It includes all the essential information,
+            terms & conditions, and clauses that come with letting out a property on rent. It is important to make a
+            Rent Agreement with legalsathi and live tension-free!</p>
+    </section>
+
+    <!-- Essentials of Rent Agreement -->
+    <section id="essentials" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Essentials & Format of a Rental Agreement</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Name of the Parties:</span>
+                        The names of the parties specifically mentioned as Lessor(landlord) & Lessee(tenant) with
+                        adequate permanent address of the respective parties in the agreement format.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Right to enjoyment or
+                            demise:</span> The lease/rent agreement provides a right of enjoyment of the property to the
+                        tenant but not any ownership right to the lessee.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Immovable property:</span>
+                        The Property for which the agreement is made should be immovable.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Duration:</span> The Rent
+                        Agreement shall mention a statement for the duration of the lease which could vary from a year
+                        to a longer period. If the agreement is less than 11 months, the agreement need not be
+                        registered.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Consideration:</span> It
+                        refers to the amount that the lessee needs to pay for the enjoyment of the property which is
+                        agreed between the lessor & lessee. It could be in a manner specified (e.g., monthly rent or
+                        yearly rent).</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Security Deposit:</span> A
+                        lumpsum amount agreed between the parties is deposited to the landlord(lessor) for the time
+                        being. Generally, this deposited amount is returned at the end of the term of the lease.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Notice Period & Terms of
+                            Renewal:</span> These agreements shall mention the duration before which the landlord needs
+                        to give notice to the tenant to vacate the property. Also, the terms of renewal should be
+                        mentioned, in some agreements, there are provisions for auto-renewal or no renewal.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Exit clause:</span> If the
+                        lessee terminates the agreement before the prescribed period, then the loss suffered by the
+                        lessor is to be paid by the lessee.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Signature and Date:</span>
+                        The agreement must be signed, understood & registered to make the agreement valid & enforceable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Required for Rent Agreement -->
+    <section id="documents-required" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Documents Required for a Rent Agreement</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Identity Proof (Aadhaar
+                            card) of the Landlord and Tenant</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Passport Size
+                            Photographs</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">List of fittings and
+                            furnishings of the property to be rented</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Police Verification
+                            Form</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Non-Judicial Stamp</span>
+                    </p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Registered Rent Agreement
+                            printed on stamp paper with adequate stamp duty</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages of Registered Rent Agreements -->
+    <section id="advantages" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Advantages of Registered Rent Agreements</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Legally defines (tenant & landlord) ownership rights</li>
+                <li>Strengthens one's claim over the property</li>
+                <li>Helps to safeguard the owner’s rights and interests</li>
+                <li>Provides notice to others about the ownership of the property</li>
+                <li>The landlord is more secure if the agreement is registered</li>
+                <li>A Registered Lease Agreement is legally valid & provides enforceability in the court of law</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Creating Rent Agreement with legalsathi -->
+    <section id="creating" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Creating a Rental Agreement with legalsathi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="font-semibold text-blue-900">Step 1</p>
+                    <p class="mt-2 text-gray-700">Our legal experts will review all the documents you submit to lessen
+                        the chances of incorrect or misleading information to make the process smooth.</p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="font-semibold text-blue-900">Step 2</p>
+                    <p class="mt-2 text-gray-700">Our best lawyers are here to help you with document requirements and
+                        registration necessities.</p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="font-semibold text-blue-900">Step 3</p>
+                    <p class="mt-2 text-gray-700">The respective professional will move further with your documents to
+                        apply for your Rent Agreement at the Sub-registrar's office.</p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="font-semibold text-blue-900">Step 4</p>
+                    <p class="mt-2 text-gray-700">Once the sub-registrar verifies all the documents, the Rent Agreement
+                        will be provided to the applicant within 3-5 working days or earlier.</p>
+                </div>
+                <div class="bg-white p-4 rounded-md shadow-md">
+                    <p class="font-semibold text-blue-900">Step 5</p>
+                    <p class="mt-2 text-gray-700">It's recommended to wait until one of our experts contacts you to let
+                        you know your agreement has been issued.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs on Rent Agreement -->
+    <section id="faqs" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FAQs on Rent Agreement</h2>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. What is a rent agreement?</summary>
+                    <p class="mt-2 text-gray-700">A Rent Agreement is a legal contract between the landlord/lady and the
+                        tenant. It leads to a relationship related to renting a specific premise for a period of time.
+                    </p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. What does it mean by rent review?</summary>
+                    <p class="mt-2 text-gray-700">A rent review is a process where the rent amount is reviewed and
+                        possibly adjusted during the term of the lease or at renewal.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. What is a security deposit?</summary>
+
+                    <p class="mt-2 text-gray-700">A security deposit is a sum of money paid by the tenant to the
+                        landlord at the start of the lease. It is held by the landlord as security against any potential
+                        damage or breach of the lease agreement.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4. When is the rent agreement required to get registered?
+                    </summary>
+                    <p class="mt-2 text-gray-700">As per the Registration Act 1908, it is mandatory to register the
+                        property if it is on lease for 11 months or more. Both parties need to sign the rent agreement
+                        for it to be legally binding.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q5. What are the advantages of a Residential Agreement?
+                    </summary>
+                    <p class="mt-2 text-gray-700">A Residential Agreement clearly defines the terms of tenancy, protects
+                        the interests of both the landlord and tenant, and provides legal recourse in case of disputes.
+                    </p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q6. What are the components of the Residential Agreement in
+                        India?</summary>
+                    <p class="mt-2 text-gray-700">The components include the name of the tenant(s), limits of occupancy,
+                        terms & conditions of tenancy, rent amount, security deposit, repairs & maintenance, entry to
+                        rental/lease property, restrictions by the landlord, allowance of pets, and any other important
+                        additions by the landlord/lady.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q7. Is Police Verification mandatory?</summary>
+                    <p class="mt-2 text-gray-700">Yes, Police Verification is mandatory to ensure that the tenant has no
+                        criminal background. This adds a layer of security for the landlord.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q8. What is the notice period for early termination of the
+                        rental agreement?</summary>
+                    <p class="mt-2 text-gray-700">The notice period is typically mentioned in the rental agreement. It
+                        usually ranges from one to three months, depending on the terms agreed upon by both parties.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q9. Should the Rent Agreement be notarized?</summary>
+                    <p class="mt-2 text-gray-700">While notarization is not mandatory, it is recommended to add an extra
+                        layer of legal validation to the agreement, making it more enforceable in court.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q10. Is insurance adopted in rent agreements?</summary>
+                    <p class="mt-2 text-gray-700">Insurance is not typically included in a rent agreement, but it can be
+                        negotiated as an additional clause, especially if the landlord wants to ensure the property is
+                        protected against certain risks.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q11. Is a rental agreement legally valid in the court of law?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Yes, a properly executed and registered rental agreement is legally
+                        valid and enforceable in a court of law.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q12. Who becomes the owner of the property after a rent
+                        agreement is made?</summary>
+                    <p class="mt-2 text-gray-700">The ownership of the property remains with the landlord. The tenant
+                        only gets the right to use the property as per the terms of the agreement.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q13. What happens if there is no agreement between the tenant
+                        & landlord?</summary>
+                    <p class="mt-2 text-gray-700">If there is no written agreement, the tenancy can still be legal, but
+                        it is harder to enforce rights or resolve disputes without a formal contract. It is always
+                        advisable to have a written agreement in place.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q14. Do you provide doorstep services?</summary>
+                    <p class="mt-2 text-gray-700">Yes, legalsathi provides doorstep services for the drafting,
+                        notarization, and registration of rent agreements, ensuring a hassle-free experience.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q15. Is there any rental agreement format?</summary>
+                    <p class="mt-2 text-gray-700">Yes, legalsathi offers a standard rental agreement format that can be
+                        customized to fit your specific needs and requirements.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q16. What are the working days?</summary>
+                    <p class="mt-2 text-gray-700">legalsathi operates from Monday to Friday, 10 AM to 4 PM EST.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose legalsathi -->
+    <section id="whyChoose" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Why Choose legalsathi for Online Rent Agreement</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Convenient Online Registration: legalsathi provides a platform that saves your precious time & effort.
+                    The process of acquiring an Affordable Online Registered Rent Agreement with our expert team is
+                    seamless and easy.</li>
+                <li>Best Online Platform: With more than 5000+ clients served, we are the biggest platform for services
+                    related to registered agreements.</li>
+                <li>Best Customer Support: Our responsive and helpful customer support prioritizes your needs and goes
+                    above and beyond to exceed your expectations.</li>
+                <li>Experienced Team: With over 10 years of experience, our highly experienced legal experts ensure your
+                    registration process is done without any
+                <li>Pocket-friendly Services: legalsathi’s affordable pricing & packages offer value for money. Our
+                    pricing is budget-friendly and designed to ensure you get the best service without breaking the
+                    bank.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- They Trust Us Section -->
+    <section id="trust" class="bg-white py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">They Trust Us</h2>
+            <p class="text-lg text-gray-700">We have successfully assisted over 200,000 clients with their legal needs.
+            </p>
+            <!-- Placeholder for client logos or testimonials -->
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">LegalSathi</h3>
+                <p class="text-gray-400">A full-service legal studio for all your legal needs.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Privacy Policy</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Get in Touch</h3>
+                <p class="text-gray-400">Mon-Fri 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">Contact</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Pinterest</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Join Our Mailing List</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">First Name</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">Subscribe</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Explore</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">Home</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">Services</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Our Story</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Works</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Glossary</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

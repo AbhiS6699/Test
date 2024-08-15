@@ -1,0 +1,426 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #2c3e50 !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #2c3e50 !important;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-item:hover .nav-link {
+            color: black !important;
+            border-radius: 8px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .dropdown-item {
+            font-weight: 500;
+            color: #2c3e50;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: black !important;
+            border-radius: 6px;
+        }
+
+        .dropdown-item img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-custom {
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <span class="text-blue-600">Legal</span>Sathi
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Start Business
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/lawyer.png' %}"
+                                            alt="Partnership Deed">Partnership Deed</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Pvt. Ltd.
+                                        Company Registration</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                            alt="Section 8">Section 8 Company Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">LLP Registration</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="changeBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Change in Business
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="changeBusinessDropdown">
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/dissolution.png' %}"
+                                            alt="Dissolution">Dissolution of Deeds</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/options.png' %}"
+                                            alt="Business Options">Business Options</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Registration
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Import
+                                        Export License</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Trademark
+                                        Registration</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                            alt="Section 8">Food Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Gumasta License</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">MSME Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">GST Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">PF Registration</a></li>
+
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Filing & More
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">GST
+                                        Return Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">ITR
+                                        Filing</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                            alt="Section 8">TDS Return Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">PF Return Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">ESIC Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Online Accounting</a></li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Drafting
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Legal
+                                        Drafting</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Rent
+                                        Agreement</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                            alt="Section 8">NOC</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Affidavit</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Will</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Application Form</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Privacy Policy Drafting</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Terms & Condition Drafting</a>
+                                </li>
+
+
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Utilities
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">GST
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">EMI
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                            alt="Section 8">TDS Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">SIP Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">FD Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">80U Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">HRA Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'images/llp.png' %}" alt="LLP">Simple Interest Calculator</a>
+                                </li>
+
+
+
+
+
+
+                            </ul>
+                        </li>
+                        <!-- Additional dropdowns -->
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-custom" href="{% url 'login' %}">Login</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title text-center text-primary mb-4">GST Calculator</h1>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <form id="gstForm">
+                            <div class="mb-3">
+                                <label for="initialAmount" class="form-label">Initial Amount (₹)</label>
+                                <input type="number" id="initialAmount" class="form-control"
+                                    placeholder="Enter initial amount" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="gstRate" class="form-label">Rate Of GST (%)</label>
+                                <input type="range" id="gstRate" min="1" max="28" value="18" class="form-range">
+                                <p id="gstRateDisplay" class="text-center mt-2 fs-5">18%</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="yourState" class="form-label">Your State</label>
+                                <select id="yourState" class="form-select">
+                                    <option value="">Select your state</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Maharashtra">Maharashtra</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerState" class="form-label">Customer State</label>
+                                <select id="customerState" class="form-select">
+                                    <option value="">Select customer state</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Chhattisgarh">Chhattisgarh</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gstType" value="add" checked>
+                                    <label class="form-check-label">Add GST</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gstType" value="remove">
+                                    <label class="form-check-label">Remove GST</label>
+                                </div>
+                            </div>
+                            <button type="button" id="calculateBtn" class="btn btn-primary w-100">Calculate GST</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">Net Amount</p>
+                                        <p id="netAmount" class="fs-4 fw-bold text-primary mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">GST Amount</p>
+                                        <p id="gstAmount" class="fs-4 fw-bold text-primary mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">SGST</p>
+                                        <p id="sgstAmount" class="fs-4 fw-bold text-primary mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">CGST</p>
+                                        <p id="cgstAmount" class="fs-4 fw-bold text-primary mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">IGST</p>
+                                        <p id="igstAmount" class="fs-4 fw-bold text-primary mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="ant-card ant-card-bordered shadow-sm">
+                                    <div class="ant-card-body text-center">
+                                        <p class="mb-0 text-secondary">Total Amount</p>
+                                        <p id="totalAmount" class="fs-4 fw-bold text-success mb-0">₹0/-</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.16.13/antd.min.js"></script>
+    <script>
+        document.getElementById('gstRate').addEventListener('input', function () {
+            document.getElementById('gstRateDisplay').textContent = this.value + '%';
+        });
+
+        document.getElementById('calculateBtn').addEventListener('click', function () {
+            const initialAmount = parseFloat(document.getElementById('initialAmount').value);
+            const gstRate = parseFloat(document.getElementById('gstRate').value);
+            const yourState = document.getElementById('yourState').value;
+            const customerState = document.getElementById('customerState').value;
+            const gstType = document.querySelector('input[name="gstType"]:checked').value;
+
+            let gstAmount = (initialAmount * gstRate) / 100;
+            let totalAmount = initialAmount + gstAmount;
+
+            let sgst = 0, cgst = 0, igst = 0;
+
+            if (yourState === customerState) {
+                sgst = cgst = gstAmount / 2;
+            } else {
+                igst = gstAmount;
+            }
+
+            if (gstType === 'remove') {
+                totalAmount = initialAmount;
+                initialAmount = totalAmount / (1 + gstRate / 100);
+                gstAmount = totalAmount - initialAmount;
+                if (yourState === customerState) {
+                    sgst = cgst = gstAmount / 2;
+                } else {
+                    igst = gstAmount;
+                }
+            }
+
+            document.getElementById('netAmount').textContent = '₹' + initialAmount.toFixed(2) + '/-';
+            document.getElementById('gstAmount').textContent = '₹' + gstAmount.toFixed(2) + '/-';
+            document.getElementById('sgstAmount').textContent = '₹' + sgst.toFixed(2) + '/-';
+            document.getElementById('cgstAmount').textContent = '₹' + cgst.toFixed(2) + '/-';
+            document.getElementById('igstAmount').textContent = '₹' + igst.toFixed(2) + '/-';
+            document.getElementById('totalAmount').textContent = '₹' + totalAmount.toFixed(2) + '/-';
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- AOS (Animate on Scroll) CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <!-- Splide.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .custom-splide__pagination__page.is-active {
+            background-color: #ff4757;
+        }
+
+        .custom-splide__pagination {
+            display: none;
+        }
+
+        .custom-splide__slide img {
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .custom-splide__slide img:hover {
+            transform: scale(1.05);
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: transparent;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            transition: transform 0.2s;
+        }
+
+        .service-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .carousel:hover .carousel-control {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .carousel-item>div {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light" data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0">
+    <header class="bg-white shadow" data-aos="fade-down">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="fs-3 fw-bold text-primary">
+                    <a href="{% url 'index' %}"><span class="text-primary">Legal</span>Sathi</a>
+                </div>
+                <div class="d-md-none">
+                    <button id="nav-toggle" class="btn btn-outline-primary">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="d-none d-md-flex gap-3">
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Start Business</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'partnership-deed' %}" class="dropdown-item">Partnership Deed</a></li>
+                            <li><a href="{% url 'pvt_ltd_registration' %}" class="dropdown-item">Pvt. Ltd. Company
+                                    Registration</a></li>
+                            <li><a href="{% url 'llp_registration' %}" class="dropdown-item">LLP Registration</a></li>
+                            <li><a href="#" class="dropdown-item">Section 8 Company Registration</a></li>
+                            <li><a href="#" class="dropdown-item">Annual Compliance</a></li>
+                            <li><a href="#" class="dropdown-item">CMA Report</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#services" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Change in Business</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Dissolution of Deeds</a></li>
+                            <li><a href="#" class="dropdown-item">Business Options</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#testimonials" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Registration</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Import Export License</a></li>
+                            <li><a href="#" class="dropdown-item">MSME Registration</a></li>
+                            <li><a href="#" class="dropdown-item">PF Registration</a></li>
+                            <li><a href="#" class="dropdown-item">Gumasta License</a></li>
+                            <li><a href="#" class="dropdown-item">Trade Mark Registration</a></li>
+                            <li><a href="#" class="dropdown-item">Food License</a></li>
+                            <li><a href="#" class="dropdown-item">GST Registration</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#contact" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Filing & More</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">GST Return Filing</a></li>
+                            <li><a href="#" class="dropdown-item">ITR Filing</a></li>
+                            <li><a href="#" class="dropdown-item">TDS Return Filing</a></li>
+                            <li><a href="#" class="dropdown-item">PF Return Filing</a></li>
+                            <li><a href="#" class="dropdown-item">ESIC Filing</a></li>
+                            <li><a href="#" class="dropdown-item">Online Accounting</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#contact" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Drafting</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">Legal Drafting</a></li>
+                            <li><a href="#" class="dropdown-item">Rent Agreement</a></li>
+                            <li><a href="#" class="dropdown-item">NOC</a></li>
+                            <li><a href="#" class="dropdown-item">Affidavit</a></li>
+                            <li><a href="#" class="dropdown-item">Power of Attorney</a></li>
+                            <li><a href="#" class="dropdown-item">Will</a></li>
+                            <li><a href="#" class="dropdown-item">Application Form</a></li>
+                            <li><a href="#" class="dropdown-item">Privacy Policy Drafting</a></li>
+                            <li><a href="#" class="dropdown-item">Terms & Conditions Drafting</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#contact" class="btn btn-link fw-bold text-dark dropdown-toggle"
+                            data-bs-toggle="dropdown">Utilities</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="dropdown-item">GST Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">EMI Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">TDS Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">SIP Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">FD Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">80U Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">HRA Calculator</a></li>
+                            <li><a href="#" class="dropdown-item">Simple Interest Calculator</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="d-none d-md-flex gap-2">
+                    <a href="#" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="d-none flex-column mt-3">
+                <a href="#" class="nav-link text-dark">Home</a>
+                <a href="#services" class="nav-link text-dark">Services</a>
+                <a href="#testimonials" class="nav-link text-dark">Testimonials</a>
+                <a href="#contact" class="nav-link text-dark">Contact</a>
+                <a href="#" class="btn btn-primary my-2">Login</a>
+                <a href="#" class="btn btn-success">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container my-5 p-4 bg-white shadow rounded" data-aos="fade-up">
+        <h1 class="text-center mb-4 text-primary">EMI Calculator</h1>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="principalAmount" class="form-label">Principal Amount (₹)</label>
+                <input type="number" id="principalAmount" class="form-control" placeholder="Enter the loan amount">
+            </div>
+            <div class="col-md-6">
+                <label for="interestRate" class="form-label">Annual Interest Rate (%)</label>
+                <input type="number" id="interestRate" step="0.01" class="form-control"
+                    placeholder="Enter the interest rate">
+            </div>
+            <div class="col-md-6">
+                <label for="loanTenure" class="form-label">Loan Tenure (Years)</label>
+                <input type="number" id="loanTenure" class="form-control" placeholder="Enter the tenure">
+            </div>
+            <div class="col-md-6">
+                <label for="loanTenureMonths" class="form-label">Loan Tenure (Months)</label>
+                <input type="number" id="loanTenureMonths" class="form-control"
+                    placeholder="Enter the tenure in months">
+            </div>
+            <div class="col-12">
+                <button type="button" id="calculateEmiBtn" class="btn btn-success w-100">Calculate EMI</button>
+            </div>
+        </form>
+
+        <div class="row g-3 mt-4">
+            <div class="col-md-4">
+                <div class="p-3 bg-light border rounded text-center">
+                    <h5 class="text-primary">Monthly EMI</h5>
+                    <p id="emiAmount" class="fs-4 fw-bold">₹0/-</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-light border rounded text-center">
+                    <h5 class="text-primary">Total Interest Payable</h5>
+                    <p id="totalInterest" class="fs-4 fw-bold">₹0/-</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 bg-light border rounded text-center">
+                    <h5 class="text-primary">Total Payment (Principal + Interest)</h5>
+                    <p id="totalPayment" class="fs-4 fw-bold">₹0/-</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Splide.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
+    <!-- AOS (Animate on Scroll) JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- WOW.js -->
+    <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init();
+            new WOW().init();
+        });
+
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('d-none');
+            navMobileMenu.classList.toggle('d-none');
+        });
+
+        document.getElementById('calculateEmiBtn').addEventListener('click', function () {
+            const principal = parseFloat(document.getElementById('principalAmount').value);
+            const annualInterestRate = parseFloat(document.getElementById('interestRate').value);
+            let tenureYears = parseFloat(document.getElementById('loanTenure').value);
+            let tenureMonths = parseFloat(document.getElementById('loanTenureMonths').value);
+
+            if (isNaN(tenureMonths) || tenureMonths <= 0) {
+                tenureMonths = tenureYears * 12;
+            } else {
+                tenureYears = tenureMonths / 12;
+            }
+
+            const monthlyInterestRate = annualInterestRate / 12 / 100;
+            const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenureMonths)) / (Math.pow(1 + monthlyInterestRate, tenureMonths) - 1);
+            const totalPayment = emi * tenureMonths;
+            const totalInterest = totalPayment - principal;
+
+            if (isFinite(emi)) {
+                document.getElementById('emiAmount').textContent = '₹' + emi.toFixed(2) + '/-';
+                document.getElementById('totalInterest').textContent = '₹' + totalInterest.toFixed(2) + '/-';
+                document.getElementById('totalPayment').textContent = '₹' + totalPayment.toFixed(2) + '/-';
+            } else {
+                document.getElementById('emiAmount').textContent = '₹0/-';
+                document.getElementById('totalInterest').textContent = '₹0/-';
+                document.getElementById('totalPayment').textContent = '₹0/-';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Input',
+                    text: 'Please enter valid input values!'
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

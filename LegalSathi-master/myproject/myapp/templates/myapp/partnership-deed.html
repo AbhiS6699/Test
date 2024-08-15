@@ -1,0 +1,645 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+
+
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .custom-splide__pagination {
+        display: none;
+        /* Hide pagination dots */
+    }
+
+    .custom-splide__slide img {
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+        width: 30%;
+        height: auto;
+    }
+
+    .splide__track {
+        margin: 0 20px;
+    }
+
+    @media (min-width: 1024px) {
+        .splide__track {
+            margin: 0 40px;
+        }
+    }
+
+
+    .custom-splide__slide img:hover {
+        transform: scale(1.05);
+    }
+
+    .custom-splide__slide {
+        padding: 5px;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+
+    .splide__slide img {
+        border-radius: 10%;
+    }
+
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .rounded-md {
+        border-radius: 10px;
+    }
+
+    .splide__pagination {
+        display: none;
+        /* Hide pagination dots */
+    }
+
+    .splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+    }
+
+    .animated-text {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s;
+    }
+
+    .service-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .service-name {
+        font-size: 0.875rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .carousel:hover .carousel-control {
+        display: block;
+    }
+
+    .carousel-control.left {
+        left: 1rem;
+    }
+
+    .carousel-control.right {
+        right: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-item {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .carousel-item>div {
+            width: 100%;
+        }
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-200">Section 8 Company Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-orange-100 mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Partnership Deed Registration - Legalize Your
+                    Partnership</h1>
+                <p class="mt-6 text-lg text-gray-800">A Partnership Deed is a written legal document containing a
+                    Partnership agreement between the partners of a firm that summarises the terms and conditions of
+                    their partnership under the 'Indian Partnership Act 1932'. Get help from the experts of LegalSathi
+                    for
+                    making PDR.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-orange-500 text-xl font-semibold">Book Service Now @ ₹ 1251.00 only /- <span
+                        class="text-gray-600">(Including GST)</span></h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-orange-600">Proceed
+                        Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is a Partnership Deed -->
+    <section id="partnership-deed" class="container mx-8 py-12">
+        <h2 class="text-3xl font-bold text-blue-900 mb-6">What is a Partnership Deed?</h2>
+        <p class="text-gray-700 text-lg leading-relaxed">A partnership deed is an agreement between the partners
+            containing a Partnership agreement between the partners of the firm. The deed includes the terms and
+            conditions of the partnership like the nature of the business, a specific state in which the firm will
+            operate its business activities, partnership firm structure, or a clause related to the dissolution of the
+            firm under the “Indian Partnership Act of 1932”.</p>
+    </section>
+
+    <!-- Documents Required -->
+    <section id="document-required" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Documents Required for Partnership Deed Drafting</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Identity and Address Proof
+                            of Partners</span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">PAN Cards of
+                            Partners</span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Passport-sized Photographs
+                            of Partners</span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Proof of Office Address
+                            from where the business will be operated
+
+                        </span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Utility Bill of Registered
+                            Office Address like electricity bill
+
+                        </span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">No Objection Certificate
+                            (NOC) from the Property Owner (if applicable)
+
+                        </span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Rent Agreement or registry
+                            papers of the property from where the business will be operated
+
+                        </span></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md">
+                    <p class="text-lg text-gray-700"><span class="text-black-500 font-bold">Stamp Paper for Partnership
+                            Deed Notarization
+
+                        </span></p>
+                </div>
+
+
+                <!-- Add more items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Procedure for Online Registration -->
+    <section id="registration-process" class="bg-orange-100 mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Procedure for Online Registration of Partnership Firm</h2>
+            <div class="flex flex-wrap items-center">
+                <div class="w-full lg:w-1/5 p-4">
+                    <div class="bg-white p-6 rounded-md shadow-md text-center">
+                        <p class="font-semibold text-blue-900">Step 1</p>
+                        <p class="mt-2 text-gray-700">Our legal experts will review all the documents you submit to
+                            lessen the chances of incorrect or misleading information to make the process smooth.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 p-4">
+                    <div class="bg-white p-6 rounded-md shadow-md text-center">
+                        <p class="font-semibold text-blue-900">Step 2</p>
+                        <p class="mt-2 text-gray-700">Our best Partnership Deed experts are here to help you with
+                            document requirements and registration necessities.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 p-4">
+                    <div class="bg-white p-6 rounded-md shadow-md text-center">
+                        <p class="font-semibold text-blue-900">Step 3</p>
+                        <p class="mt-2 text-gray-700">The respective professional will move further with your documents
+                            to apply for your Partnership Deed Registration.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 p-4">
+                    <div class="bg-white p-6 rounded-md shadow-md text-center">
+                        <p class="font-semibold text-blue-900">Step 4</p>
+                        <p class="mt-2 text-gray-700">After acceptance of your application by the Registrar of Firms,
+                            your Partnership Deed certificate will be generated.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/5 p-4">
+                    <div class="bg-white p-6 rounded-md shadow-md text-center">
+                        <p class="font-semibold text-blue-900">Step 5</p>
+                        <p class="mt-2 text-gray-700">You are supposed to wait until our expert reaches out to notify
+                            you of the generation of your Partnership Deed Certificate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Validity of Partnership Registration -->
+    <section id="validity" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Validity of Partnership Registration in India</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>A registered partnership firm can continue its operations up to the wish of the partners</li>
+                <li>Flexible Changes in Partnership Agreement</li>
+                <li>Filing of proper Annual Returns even though it is not mandatory</li>
+                <li>The registration becomes invalid upon the dissolution or termination of the partnership</li>
+                <li>Partners must comply with applicable laws and regulations governing partnerships</li>
+                <li>It is crucial to follow the legal procedures for the conversion of a partnership into another
+                    business structure</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="advantages" class="bg-orange-100 mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Advantages of a Partnership Firm</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Subject to Fewer Regulations</li>
+                <li>One can apply for registration without any strict formalities associated with other business
+                    structures.</li>
+                <li>Flexibility in Decision-Making</li>
+                <li>Just like a registered firm, an unregistered firm cannot enjoy certain benefits and legal
+                    protections.</li>
+                <li>No Mandatory Annual Filings</li>
+                <li>No Minimum Capital Requirement</li>
+                <li>Unlike a Limited Liability Partnership (LLP), a partnership firm is not mandated to obtain a
+                    certificate of registration.</li>
+                <li>Conversion of type of firm is easy</li>
+                <li>A unique identification number or registration certificate is not mandatory for a partnership firm.
+                </li>
+                <li>The registration process for a partnership firm in India is relatively less lengthy.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Documents and Details Required for Registration -->
+    <section id="registration-details" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Documents and Details Required for Registration</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Partnership Deed</li>
+                <li>Form 1 - Application for registration which is available online</li>
+                <li>PAN cards of the partners</li>
+                <li>Aadhar Cards of the partners</li>
+                <li>Address proofs of the partners</li>
+                <li>Address Proof of Office Address (electricity bill, rent agreement, etc.)</li>
+                <li>Affidavit from partners per the Partnership Act</li>
+                <li>The firm's current account details along with other relevant bank documents</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="bg-orange-100 mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FAQs about Partnership Deed</h2>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. Partnership Deed Registration is done under which Indian
+                        Constitution Act?</summary>
+                    <p class="mt-2 text-gray-700">Partnership Act 1932 is responsible for Partnership Deed Registration
+                        in India.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. How many partners can form a partnership firm?</summary>
+                    <p class="mt-2 text-gray-700">In India, there are two types of partnerships: Partnership at Will and
+                        Particular Partnership.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. Is registration mandatory for business firms?</summary>
+                    <p class="mt-2 text-gray-700">The registration process for a partnership firm in India is relatively
+                        less lengthy.</p>
+                </details>
+                <!-- Add more FAQ items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- They Trust Us Section -->
+    <section id="trust" class="bg-white py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">They Trust Us</h2>
+            <p class="text-lg text-gray-700">We have successfully assisted over 200,000 clients with their legal needs.
+            </p>
+            <!-- Add trust logos or client logos as needed -->
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">wilda</h3>
+                <p class="text-gray-400">A full service branding studio for the visionaries.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">TERMS OF SERVICE</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PRIVACY POLICY</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">GET IN TOUCH</h3>
+                <p class="text-gray-400">MON-FRIDAY 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">CONTACT</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">INSTAGRAM</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PINTEREST</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">JOIN OUR MAILING LIST</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">FIRST NAME</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">EMAIL</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">EXPLORE</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">HOME</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">SERVICES</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">OUR STORY</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">WORKS</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">GLOSSARY</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

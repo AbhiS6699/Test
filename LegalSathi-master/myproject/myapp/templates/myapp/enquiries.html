@@ -1,0 +1,390 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .custom-splide__pagination {
+        display: none;
+        /* Hide pagination dots */
+    }
+
+    .custom-splide__slide img {
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+        width: 30%;
+        height: auto;
+    }
+
+    .splide__track {
+        margin: 0 20px;
+    }
+
+    @media (min-width: 1024px) {
+        .splide__track {
+            margin: 0 40px;
+        }
+    }
+
+    .custom-splide__slide img:hover {
+        transform: scale(1.05);
+    }
+
+    .custom-splide__slide {
+        padding: 5px;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .splide__slide img {
+        border-radius: 10%;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .rounded-md {
+        border-radius: 28px;
+    }
+
+    .splide__pagination {
+        display: none;
+        /* Hide pagination dots */
+    }
+
+    .splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+    }
+
+    .animated-text {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s;
+    }
+
+    .service-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .service-name {
+        font-size: 0.875rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .carousel:hover .carousel-control {
+        display: block;
+    }
+
+    .carousel-control.left {
+        left: 1rem;
+    }
+
+    .carousel-control.right {
+        right: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-item {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .carousel-item>div {
+            width: 100%;
+        }
+    }
+</style>
+
+<body class="bg-gray-100">
+    <div id="app"></div>
+    <script src="{% static 'static/js/main.js' %}"></script>
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-200">Section 8 Company Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg.gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mt-10 container mx-auto flex flex-col md:flex-row">
+        <!-- Left Side Image -->
+        <div class="w-full md:w-1/2 flex items-center justify-center mb-4 md:mb-0">
+            <img src="{% static 'myapp/images/Fill out-amico (1).svg' %}" alt="LegalSathi" class="rounded-lg">
+        </div>
+        <!-- Right Side Form -->
+        <div class="w-full md:w-1/2 pl-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Submit Your Enquiry</h2>
+            <form id="enquiry-form" action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-bold mb-1">Name</label>
+                        <input type="text" id="name" name="name"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your name" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-bold mb-1">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="contact" class="block text-gray-700 font-bold mb-1">Contact Number</label>
+                        <input type="tel" id="contact" name="contact"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your contact number" required>
+                    </div>
+                    <div>
+                        <label for="related" class="block text-gray-700 font-bold mb-1">Related To</label>
+                        <select id="related" name="related"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required>
+                            <option value="family">Family Law</option>
+                            <option value="criminal">Criminal Law</option>
+                            <option value="corporate">Corporate Law</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="city_district" class="block text-gray-700 font-bold mb-1">City/District</label>
+                        <input type="text" id="city_district" name="city_district"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Enter your city or district" required>
+                    </div>
+                    <div>
+                        <label for="problem_category" class="block text-gray-700 font-bold mb-1">Select Problem/Query
+                            Category</label>
+                        <select id="problem_category" name="problem_category"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required>
+                            <option value="category1">Category 1</option>
+                            <option value="category2">Category 2</option>
+                            <option value="category3">Category 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="query_title" class="block text-gray-700 font-bold mb-1">Query Title</label>
+                    <input type="text" id="query_title" name="query_title"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter your query title" required>
+                </div>
+                <div>
+                    <label for="query_description" class="block text-gray-700 font-bold mb-1">Query Description</label>
+                    <textarea id="query_description" name="query_description"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter your query description" required></textarea>
+                </div>
+                <div>
+                    <label for="documents" class="block text-gray-700 font-bold mb-1">Share Document</label>
+                    <input type="file" id="documents" name="documents"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        multiple>
+                </div>
+                <button type="submit"
+                    class="w-full px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('enquiry-form').addEventListener('submit', function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+            // Simulate form submission delay
+            setTimeout(function () {
+                // Clear the form fields
+                document.getElementById('enquiry-form').reset();
+            }, 100);
+        });
+    </script>
+
+</body>
+
+</html>

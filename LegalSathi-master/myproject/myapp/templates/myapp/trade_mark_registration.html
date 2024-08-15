@@ -1,0 +1,570 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trademark Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .rounded-md {
+        border-radius: 10px;
+    }
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+    }
+
+    .animated-text {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s;
+    }
+
+    .service-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .service-name {
+        font-size: 0.875rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .carousel:hover .carousel-control {
+        display: block;
+    }
+
+    .carousel-control.left {
+        left: 1rem;
+    }
+
+    .carousel-control.right {
+        right: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-item {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .carousel-item>div {
+            width: 100%;
+        }
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>251</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd. Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Trademark Registration Service - Protect Your
+                    Intellectual Property</h1>
+                <p class="mt-6 text-lg text-gray-800">Become a brand with a ™ sign on your logo, slogan, or company
+                    name. Get your intellectual property protected now with our Trademark Registration service.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-blue-500 text-xl font-semibold">Book Service Now @ ₹ 2251.00 only /- <span
+                        class="text-gray-600">(Including GST)</span></h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-blue-600">Proceed
+                        Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div>
+                    <p class="text-3xl font-bold text-blue-900">7 Years</p>
+                    <p class="text-gray-700">Of Experience</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-blue-900">3928+</p>
+                    <p class="text-gray-700">Cases Solved</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-blue-900">11+</p>
+                    <p class="text-gray-700">Awards Gained</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-blue-900">157k+</p>
+                    <p class="text-gray-700">Trusted Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Benefits of Online Trademark Registration with
+                Legal251</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Legal Expert Guidance</h3>
+                    <p class="text-gray-700">Get professional legal advice to navigate the trademark registration
+                        process smoothly.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Expedite Registration Process</h3>
+                    <p class="text-gray-700">We help expedite your trademark registration process, ensuring swift
+                        completion.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Monitor Your Trademark</h3>
+                    <p class="text-gray-700">We provide post-registration monitoring to protect your trademark.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Manage Documentation Digitally</h3>
+                    <p class="text-gray-700">All your trademark-related documents managed securely online.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Best Customer Support</h3>
+                    <p class="text-gray-700">Our team is here to assist you throughout the registration process and
+                        beyond.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Secure Systems</h3>
+                    <p class="text-gray-700">Your data is safe with us, thanks to our robust security protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Understanding the Trademark Registration
+                Process in India</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 1</p>
+                    <p class="mt-2 text-gray-700">Selection of Trademark</p>
+                    <p class="mt-2 text-gray-700">Choose a unique trademark and check its availability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 2</p>
+                    <p class="mt-2 text-gray-700">Trademark Filing</p>
+                    <p class="mt-2 text-gray-700">File the TM-A form with the Trade Mark Registry.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 3</p>
+                    <p class="mt-2 text-gray-700">Trademark Examination</p>
+                    <p class="mt-2 text-gray-700">The trademark office examines your application for conflicts or
+                        statutory barriers.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 4</p>
+                    <p class="mt-2 text-gray-700">Trademark Publication</p>
+                    <p class="mt-2 text-gray-700">If no objections, your trademark will be published in the Trademark
+                        Journal.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 5</p>
+                    <p class="mt-2 text-gray-700">Trademark Registration</p>
+                    <p class="mt-2 text-gray-700">Upon successful application, your trademark will be registered and you
+                        will receive a certificate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Needed Section -->
+    <section id="documents-needed" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Documents Needed for Trademark Registration
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Aadhaar Card of Applicant</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Brand Logo (To be Trademarked)</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Aadhaar Card / Driving License / Voter ID of
+                        Applicant</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Start-up Recognition (optional)</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Certificate of Incorporation (if applicable)
+                    </h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">MSME Registration (optional)</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Brand Name (To be Trademarked)</h3>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Authorization Letter (POA)</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview Section -->
+    <section id="registration-process" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">The Process of Trademark Registration Online
+            </h2>
+            <p class="text-gray-700 text-center">Our team will carefully review your documents and check the uniqueness
+                of your trademark. We will proceed with the application and keep you updated on the status.</p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Trademark Registration: FAQs and Common
+                Queries</h2>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1: What is a Trademark?</summary>
+                    <p class="mt-2 text-gray-700">A trademark is a type of intellectual property that consists of a
+                        recognizable word, design, or expression that represents a service or product.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2: Which Indian Ministry manages Trademarks?</summary>
+                    <p class="mt-2 text-gray-700">The Ministry of Commerce and Industry, through the Controller General
+                        of Patents, Designs, and Trademarks, manages trademarks in India.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3: What is the validity of Trademark Registration?</summary>
+                    <p class="mt-2 text-gray-700">Trademark registration in India is valid for 10 years and can be
+                        renewed indefinitely every 10 years.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4: Will Trademark Registration be valid outside of India?
+                    </summary>
+                    <p class="mt-2 text-gray-700">No, trademark registration in India does not automatically grant
+                        international protection. You need to file separately in each country.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q5: Can I register my Trademark Internationally?</summary>
+                    <p class="mt-2 text-gray-700">Yes, through the Madrid Protocol, you can apply for international
+                        trademark registration in multiple countries with a single application.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q6: Which Trademarks are not eligible for registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Trademarks that contain scandalous, obscene, or offensive content are
+                        not eligible for registration.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q7: Is there any classification of Trademark Registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Yes, trademarks are classified into 45 different classes of goods and
+                        services under the Trademark Act, 1999.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q8: What can I do if someone else is using my Trademark?
+                    </summary>
+                    <p class="mt-2 text-gray-700">You can file a trademark infringement lawsuit in court to protect your
+                        rights and stop unauthorized use of your trademark.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Legal251</h3>
+                <p class="text-gray-400">Your trusted partner for legal and business services.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Privacy Policy</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Get in Touch</h3>
+                <p class="text-gray-400">Mon-Fri 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">Contact</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Pinterest</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Join Our Mailing List</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">First Name</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">Email</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">Subscribe</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Explore</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">Home</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">Services</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Our Story</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Works</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">Glossary</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

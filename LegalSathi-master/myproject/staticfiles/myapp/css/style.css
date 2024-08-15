@@ -1,0 +1,119 @@
+/* Add your styles here */
+body {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.logo-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background: url('../images/hero.jpg') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 100px 20px;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+
+.hero input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    margin: 0 10px 20px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.request-form {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 300px;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.request-form h2 {
+    margin: 0 0 20px;
+}
+
+.request-form input, 
+.request-form select, 
+.request-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.request-form button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.request-form p {
+    margin: 10px 0 0;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Add similar styles for other sections */

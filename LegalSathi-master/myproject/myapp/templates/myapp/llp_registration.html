@@ -1,0 +1,567 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limited Liability Partnership (LLP) Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .custom-splide__pagination {
+        display: none;
+    }
+
+    .custom-splide__slide img {
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+        width: 30%;
+        height: auto;
+    }
+
+    .splide__track {
+        margin: 0 20px;
+    }
+
+    @media (min-width: 1024px) {
+        .splide__track {
+            margin: 0 40px;
+        }
+    }
+
+    .custom-splide__slide img:hover {
+        transform: scale(1.05);
+    }
+
+    .custom-splide__slide {
+        padding: 5px;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .splide__slide img {
+        border-radius: 10%;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .rounded-md {
+        border-radius: 10px;
+    }
+
+    .splide__pagination {
+        display: none;
+    }
+
+    .splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+    }
+
+    .animated-text {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s;
+    }
+
+    .service-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .service-name {
+        font-size: 0.875rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 50%;
+        display: none;
+    }
+
+    .carousel:hover .carousel-control {
+        display: block;
+    }
+
+    .carousel-control.left {
+        left: 1rem;
+    }
+
+    .carousel-control.right {
+        right: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-item {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .carousel-item>div {
+            width: 100%;
+        }
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Limited Liability Partnership (LLP)
+                    Registration</h1>
+                <p class="mt-6 text-lg text-gray-800">Get LLP Registration @ ₹ 8251 only /- (Including GST). Limited
+                    Liability Partnership (LLP) is one of the most preferred forms of business among entrepreneurs in
+                    India.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-blue-500 text-xl font-semibold">Get Quote Instantly</h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-blue-600">Get
+                        Started</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Benefits of a Limited Liability Partnership (LLP)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Limited Liability</h3>
+                    <p class="mt-4 text-gray-700">The partners of an LLP have limited liability, meaning their personal
+                        assets are protected in case of business debts or legal liabilities. Their liability is limited
+                        to their agreed-upon contribution to the LLP.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Separate Legal Entity</h3>
+                    <p class="mt-4 text-gray-700">An LLP is a separate legal entity distinct from its partners. It can
+                        own assets, enter into contracts, and sue or be sued in its own name. This separation provides a
+                        clear distinction between personal and business matters.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Easy Formation and Maintenance</h3>
+                    <p class="mt-4 text-gray-700">LLP registration involves a simple and straightforward process
+                        compared to other business structures like companies. It has fewer compliance requirements,
+                        reducing the administrative burden and costs.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Flexibility in Ownership and Management</h3>
+                    <p class="mt-4 text-gray-700">LLPs provide flexibility in terms of ownership and management.
+                        Partners have the freedom to determine the profit-sharing ratio and decision-making process
+                        within the LLP, making it adaptable to changing needs.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">No Minimum Capital Requirement</h3>
+                    <p class="mt-4 text-gray-700">LLPs do not have any prescribed minimum capital requirement. Partners
+                        can contribute capital as per their agreement, making it easier to start and operate the
+                        business with lower financial obligations.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Taxation Benefits</h3>
+                    <p class="mt-4 text-gray-700">LLPs enjoy the benefits of pass-through taxation. The LLP itself is
+                        not taxed at the entity level. Instead, the partners are taxed individually on their share of
+                        profits or income, eliminating double taxation.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Partner Liability Protection</h3>
+                    <p class="mt-4 text-gray-700">LLP registration protects partners from being held personally liable
+                        for the wrongful acts or misconduct of other partners. Each partner is responsible for their own
+                        actions and is not automatically liable for others.</p>
+                </div>
+                <div class="bg-blue-100 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-bold text-blue-900">Increased Credibility</h3>
+                    <p class="mt-4 text-gray-700">Registering as an LLP enhances the credibility and trustworthiness of
+                        the business. It provides a formal legal structure, which can be beneficial while dealing with
+                        clients, suppliers, lenders, and other stakeholders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Apply Section -->
+    <section id="how-to-apply" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">How to Apply for LLP Registration</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-100 p-4 rounded-md shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 1</p>
+                    <p class="mt-2 text-gray-700">Submit the required documents to our legal team for initial review.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 2</p>
+                    <p class="mt-2 text-gray-700">Our experts will prepare the necessary documents and forms for
+                        registration.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 3</p>
+                    <p class="mt-2 text-gray-700">We will file the application with the Registrar of Companies (ROC)
+                        along with the required fee.</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-md shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Step 4</p>
+                    <p class="mt-2 text-gray-700">Once approved, you will receive the Certificate of Incorporation,
+                        officially registering your LLP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FAQs about Limited Liability Partnership (LLP)</h2>
+            <div class="bg-blue-50 p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. What is a Limited Liability Partnership (LLP)?</summary>
+                    <p class="mt-2 text-gray-700">A Limited Liability Partnership (LLP) is a form of business
+                        organisation that combines the benefits of a partnership and limited liability. It provides
+                        partners with limited liability protection while allowing them to actively participate in the
+                        management of the business.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. What are the minimum requirements to register an LLP?
+                    </summary>
+                    <p class="mt-2 text-gray-700">The key requirements include a minimum of two partners, a registered
+                        office address, and the submission of necessary documents such as identity and address proofs of
+                        the partners.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. Can an LLP have only one partner?</summary>
+                    <p class="mt-2 text-gray-700">No, an LLP requires a minimum of two partners to be registered.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4. What is the difference between an LLP and a private
+                        limited company?</summary>
+                    <p class="mt-2 text-gray-700">An LLP is a hybrid business structure that combines elements of
+                        partnerships and companies, offering limited liability to its partners. A private limited
+                        company, on the other hand, is a separate legal entity with its shareholders having limited
+                        liability, and it is governed by the Companies Act, 2013.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q5. Can an LLP be converted into a private limited company?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Yes, an LLP can be converted into a private limited company by
+                        following the legal procedures laid down by the Companies Act, 2013.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q6. Can foreign nationals or Non-Resident Indians (NRIs) be
+                        partners in an LLP?</summary>
+                    <p class="mt-2 text-gray-700">Yes, foreign nationals and NRIs can be partners in an LLP. There are
+                        no restrictions on their participation, subject to compliance with foreign direct investment
+                        (FDI) guidelines and other applicable laws.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">legalsathi</h3>
+                <p class="text-gray-400">A full service branding studio for the visionaries.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">TERMS OF SERVICE</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PRIVACY POLICY</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">GET IN TOUCH</h3>
+                <p class="text-gray-400">MON-FRIDAY 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">CONTACT</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">INSTAGRAM</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PINTEREST</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">JOIN OUR MAILING LIST</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">FIRST NAME</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">EMAIL</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">EXPLORE</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">HOME</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">SERVICES</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">OUR STORY</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">WORKS</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">GLOSSARY</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

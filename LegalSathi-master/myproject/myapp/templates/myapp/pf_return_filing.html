@@ -1,0 +1,404 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PF Return Filing</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="#"><span class="text-blue-600">Legal</span>251</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                    <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                    <a href="#registration" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                    <a href="#filing" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                    <a href="#drafting" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                    <a href="#utilities" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Online PF Return Filing</h1>
+                <p class="mt-6 text-lg text-gray-800">File your return before the due date to avoid penalty. Employee
+                    Provident Fund or EPF Return must be filed monthly by all the establishments with EPF Registration
+                    in India. At Legal251, we offer a comprehensive service for PF return filing online, ensuring
+                    efficiency, compliance, and accuracy.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Get
+                        Started</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Know more
+                        about GST & Registration</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-blue-500 text-xl font-semibold">Please Select the Number of Employees:</h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="employees" class="block text-sm font-medium text-gray-700">Number of Employees
+                            *</label>
+                        <select id="employees"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option>01 to 20 Employees - ₹1000/Monthly</option>
+                        </select>
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-blue-600">Get
+                        Started</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Plans</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Tasks Included</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>Form 5A Submission</li>
+                        <li>One-time employee detail updation</li>
+                        <li>UAN Number allocation/updation</li>
+                        <li>Monthly Record updation for employees</li>
+                        <li>Monthly ECR Working</li>
+                        <li>Monthly Challan Preparation and submission</li>
+                        <li>Updation for challan submission & payment confirmation</li>
+                        <li>Digital Signature Uploading/Verification Returns</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Additional Facilities</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>Dashboard for managing service</li>
+                        <li>Mobile application support</li>
+                        <li>Documents sharing facility</li>
+                        <li>Download deliverables any time</li>
+                        <li>Password sharing</li>
+                        <li>Round the clock support</li>
+                        <li>Time to time updates & notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Forms Section -->
+    <section id="types-of-forms" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Types of Employee Provident Fund Return Filing
+                Form</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Form 5</p>
+                    <p class="mt-2 text-gray-700">Registration of new employees and updating employee details.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Form 10</p>
+                    <p class="mt-2 text-gray-700">Declaration and nomination of beneficiaries by employees.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Form 12A</p>
+                    <p class="mt-2 text-gray-700">Registration of establishments under the EPF scheme.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Form 3A</p>
+                    <p class="mt-2 text-gray-700">Monthly contribution details of employees.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <p class="font-semibold text-blue-900">Form 6A</p>
+                    <p class="mt-2 text-gray-700">Annual contribution details of employees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PF Return Filing Section -->
+    <section id="pf-return-filing" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">What is Online PF Return Filing?</h2>
+            <p class="text-lg text-gray-700 mb-6">PF returns are a crucial aspect of financial management for both
+                employers and employees. PF return refers to the process of filing returns related to the Provident Fund
+                (PF), a social security scheme provided by the government for employees in India. Under this scheme,
+                both employers and employees make regular contributions towards the employee's retirement savings.</p>
+            <p class="text-lg text-gray-700 mb-6">The PF return filing process is mandatory for all organizations
+                covered under the PF scheme. It ensures compliance with regulations and helps maintain transparency in
+                financial transactions related to employee benefits. Failure to file PF returns on time or accurately
+                can lead to penalties and legal consequences for the employer.</p>
+        </div>
+    </section>
+
+    <!-- Due Date Section -->
+    <section id="due-date" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">What is the due date for filing PF return?
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Private Establishments</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>PF returns must be submitted monthly.</li>
+                        <li>The deadline for monthly submissions is the 15th of the following month.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Government Establishments</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>PF returns must be submitted quarterly.</li>
+                        <li>The deadline for quarterly submissions is the end of the month following the quarter's
+                            conclusion.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Quick Overview</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>PF Payment: Due on or before the 15th of each month.</li>
+                        <li>PF Annual Return: Due by April 25th of every year.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Required Section -->
+    <section id="documents-required" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Documents Required for Filing EPF Returns</h2>
+            <ul class="text-lg text-gray-700 space-y-2">
+                <li>A canceled check or the latest bank statement</li>
+                <li>Copy of the Provident Fund Payment Challan</li>
+                <li>Detailed documentation listing PF contributions made by both the employer and employees.</li>
+                <li>Employee and employer PAN cards</li>
+                <li>Employee and employer Aadhaar cards</li>
+                <li>Monthly Salary Statement</li>
+                <li>Certificate of Incorporation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Benefits of filing returns</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Legal Compliance</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Employee Security</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Tax Benefits</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Financial Transparency</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Employer Branding</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Employee Retention</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-blue-900">Organizational Efficiency</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annual PF Return Filing Section -->
+    <section id="annual-pf-return-filing" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Annual PF return filing process</h2>
+            <p class="text-lg text-gray-700 mb-6">Annual PF returns must be filed no later than April 30th of each year.
+                The forms required for filing annual PF returns are Form 3A and Form 6A.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Form 3A</h3>
+                    <p class="text-gray-700">Provides a detailed breakdown of monthly contributions made by both
+                        employees and employers to the Employee Provident Fund and the Employee Pension Fund throughout
+                        the year. It includes account number, subscriber's name, and establishment's details.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-semibold text-lg text-blue-900 mb-2">Form 6A</h3>
+                    <p class="text-gray-700">Serves as a consolidated annual contribution statement, summarizing the
+                        contributions made by each member of the establishment for the entire year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faq" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6 text-center">Frequently Asked Questions</h2>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. What is PF return filing?</summary>
+                    <p class="mt-2 text-gray-700">PF return filing refers to the process of submitting provident fund
+                        returns to the Employees' Provident Fund Organisation (EPFO) in India.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. How can I file PF returns online?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. What is the due date for filing EPF returns online?
+                    </summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4. Why should I file EPF return online?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q5. Can I get assistance for PF return filing?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q6. What are the basic details required for PF return filing?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Basic details include information about the employer, employees,
+                        contributions made to the provident fund scheme, and any other relevant data.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q7. What forms are utilized for PF return filing?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q8. Who contributes to the provident fund scheme?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q9. What is included in the PF return filing?</summary>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q10. Is PF return filing a part of the employment provident
+                        fund scheme?</summary>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Legal251</h3>
+                <p class="text-gray-400">A full service branding studio for the visionaries.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">TERMS OF SERVICE</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PRIVACY POLICY</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">GET IN TOUCH</h3>
+                <p class="text-gray-400">MON-FRIDAY 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">CONTACT</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">INSTAGRAM</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PINTEREST</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">JOIN OUR MAILING LIST</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">FIRST NAME</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">EMAIL</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">EXPLORE</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">HOME</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">SERVICES</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">OUR STORY</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">WORKS</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">GLOSSARY</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

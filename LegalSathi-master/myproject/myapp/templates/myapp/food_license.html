@@ -1,0 +1,611 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalSathi - FSSAI Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-splide__pagination__page.is-active {
+        background-color: #ff4757;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .rounded-md {
+        border-radius: 10px;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        transition: transform 0.2s;
+    }
+
+    .service-icon:hover {
+        transform: scale(1.1);
+    }
+
+    .service-name {
+        font-size: 0.875rem;
+        color: #333;
+        text-align: center;
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">FSSAI Registration Online - Apply for Food
+                    Licence</h1>
+                <p class="mt-6 text-lg text-gray-800">Every Food Business Operator strives to maintain high food quality
+                    standards to assure consumer safety and satisfaction. With legalsathi, get a Food licence from the
+                    comfort of your home and get your business started today.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-orange-500 text-xl font-semibold">Book Service Now @ ₹ 590.00 only /- <span
+                        class="text-gray-600">(Including GST)</span></h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/District *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="duration" class="block text-sm font-medium text-gray-700">Duration *</label>
+                        <input type="text" id="duration"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="turnover" class="block text-sm font-medium text-gray-700">Turnover *</label>
+                        <input type="text" id="turnover"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="registration-type" class="block text-sm font-medium text-gray-700">Registration Type
+                            *</label>
+                        <input type="text" id="registration-type"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-orange-600">Proceed
+                        Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="importance" class="bg-white mx-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Importance of FSSAI Registration</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/compliance.png' %}" alt="Compliance" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Provides Compliance with Regulations</h3>
+                    <p class="text-gray-700">Ensures your food business adheres to the required legal standards,
+                        preventing legal issues.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/safety.png' %}" alt="Safety" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Ensures Health and Safety</h3>
+                    <p class="text-gray-700">Assures consumers that your food products are safe and of high quality.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/trust.png' %}" alt="Trust" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Enhances Trust and Credibility</h3>
+                    <p class="text-gray-700">Builds trust with consumers and stakeholders, strengthening your brand's
+                        credibility.</p>
+                </div>
+                <!-- Add more points as needed -->
+            </div>
+        </div>
+    </section>
+
+
+    <section id="online-application" class="bg-white mx-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Online Food Licence Application</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">Step 1: Determine Your Eligibility</h3>
+                    <p class="text-gray-700">Identify the correct FSSAI registration type based on your business
+                        turnover and scale.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">Step 2: Choose the Application Form</h3>
+                    <p class="text-gray-700">Select the appropriate form: Form A for Basic Registration or Form B for
+                        State/Central Licence.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">Step 3: Complete the Form</h3>
+                    <p class="text-gray-700">Fill out the application form accurately with all required business and
+                        food details.</p>
+                </div>
+                <!-- Add more steps as needed -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FSSAI Registration vs Food Licence -->
+    <section id="differences" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FSSAI Registration vs Food Licence Application:
+                Differences and Benefits</h2>
+            <table class="w-full text-left text-lg text-gray-700">
+                <thead>
+                    <tr>
+                        <th class="py-2 px-4">Criteria</th>
+                        <th class="py-2 px-4">FSSAI Registration</th>
+                        <th class="py-2 px-4">FSSAI/Food Licence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2 px-4">Form Required</td>
+                        <td class="py-2 px-4">Form A</td>
+                        <td class="py-2 px-4">Form B</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Type of Registration</td>
+                        <td class="py-2 px-4">Basic</td>
+                        <td class="py-2 px-4">Central and State License</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Size of Business</td>
+                        <td class="py-2 px-4">Small Business</td>
+                        <td class="py-2 px-4">Medium and Large</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Turnover Limit</td>
+                        <td class="py-2 px-4">Businesses having an annual turnover not exceeding Rs.12 lakh</td>
+                        <td class="py-2 px-4">Businesses having an annual turnover of more than Rs.12 lakh</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Duration</td>
+                        <td class="py-2 px-4">On applicability</td>
+                        <td class="py-2 px-4">Maximum 5 Years</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="documents" class="bg-white mx-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Documents Required for FSSAI Registration
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="flex items-start p-4 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/document.png' %}" alt="Document" class="w-12 h-12 mr-4">
+                    <p class="text-gray-700">Passport size Photograph of the proprietor</p>
+                </div>
+                <div class="flex items-start p-4 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/document.png' %}" alt="Document" class="w-12 h-12 mr-4">
+                    <p class="text-gray-700">Aadhar Card/Voter ID/ Passport/Pan Card/ Driving License</p>
+                </div>
+                <div class="flex items-start p-4 bg-gray-100 rounded-lg shadow-lg">
+                    <img src="{% static 'myapp/images/document.png' %}" alt="Document" class="w-12 h-12 mr-4">
+                    <p class="text-gray-700">Office address proof</p>
+                </div>
+                <!-- Add more documents as needed -->
+            </div>
+        </div>
+    </section>
+
+
+    <section id="fssai-process" class="bg-white mx-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">The Process of FSSAI Registration for Food
+                Licence</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">1</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Determine Your Eligibility</h3>
+                    <p class="text-gray-700">Understand the specific FSSAI registration type suitable for your business
+                        based on turnover and scale.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">2</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Obtain the Application Form</h3>
+                    <p class="text-gray-700">Download the correct application form (Form A for Basic Registration or
+                        Form B for State/Central Licence) based on your eligibility.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">3</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Complete the Application Form</h3>
+                    <p class="text-gray-700">Accurately fill out the application form with all the required information
+                        about your food business.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">4</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Gather Supporting Documents</h3>
+                    <p class="text-gray-700">Collect and prepare all the necessary documents required for your FSSAI
+                        registration.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">5</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Submit the Application</h3>
+                    <p class="text-gray-700">Submit the completed application form and supporting documents to the
+                        relevant FSSAI office.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">6</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Payment of Fees</h3>
+                    <p class="text-gray-700">Pay the required fees based on the type and duration of the FSSAI Licence
+                        you are applying for.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">7</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Inspection</h3>
+                    <p class="text-gray-700">FSSAI authorities will conduct an inspection of your food premises to
+                        ensure compliance with safety standards.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">8</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Issuance of Certificate</h3>
+                    <p class="text-gray-700">Once approved, your FSSAI registration/licence will be issued, containing a
+                        unique number.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <div class="text-5xl font-bold text-blue-900 mb-4">9</div>
+                    <h3 class="text-xl font-semibold text-blue-900 mb-2">Display the FSSAI Logo</h3>
+                    <p class="text-gray-700">It is mandatory to display the FSSAI logo/number on your food product
+                        labels or premises once registered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="mistakes" class="bg-white mx-8 py-16">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center text-blue-900 mb-12">Common Mistakes to Avoid</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <ul class="space-y-4 text-lg text-gray-700">
+                    <li><strong>Incomplete Application Form:</strong> Ensure all required fields are filled out
+                        properly.</li>
+                    <li><strong>Lack of Proper Documentation:</strong> Missing documents can delay the approval process.
+                    </li>
+                    <li><strong>Non-compliance with FSSAI Regulations:</strong> Adherence to FSSAI guidelines is
+                        crucial.</li>
+                    <!-- Add more mistakes as needed -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FAQs on FSSAI Registration</h2>
+            <div class="bg-white p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. What is the importance of the Food License Registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">The major importance of the FSSAI License is that it ensures that your
+                        food is verified chemically and hence is safe to consume.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. What is the Procedure for Food License Registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">The procedure involves determining your eligibility, completing the
+                        application form, gathering supporting documents, submitting the application, paying the fees,
+                        and undergoing inspection before the issuance of the certificate.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. What are the types of FSSAI License Registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">There are two types: Basic Registration and State/Central Licence,
+                        depending on the size and turnover of the business.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4. How can I get my FSSAI license renewed?</summary>
+                    <p class="mt-2 text-gray-700">The renewal process involves submitting a renewal application before
+                        the expiration date, along with the required documents and fees.</p>
+                </details>
+                <!-- Add more FAQ items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="bg-white mx-8 py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Why Choose legalsathi for FSSAI Registration?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="custom-card p-6 bg-white rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">Convenient FSSAI Registration</h3>
+                    <p class="text-gray-700">With legalsathi, users can easily register online just by filling in their
+                        name, email ID, contact number, and choosing FSSAI registration services.</p>
+                </div>
+                <div class="custom-card p-6 bg-white rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">Best Online Platform</h3>
+                    <p class="text-gray-700">legalsathi has one of the biggest online client bases, making us one of the
+                        Best Online Platforms in India, ready to serve you online, no matter where you are.</p>
+                </div>
+                <div class="custom-card p-6 bg-white rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">Experienced Team</h3>
+                    <p class="text-gray-700">With 10 years of experience in the industry, our team is well-versed in
+                        providing FSSAI registration services, ensuring a smooth and efficient process.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="custom-card p-6 bg-white rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">On-time Service</h3>
+                    <p class="text-gray-700">We value your time and ensure that our team provides you with on-time
+                        service, starting your FSSAI registration process immediately.</p>
+                </div>
+                <div class="custom-card p-6 bg-white rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-blue-900 mb-4">Pocket-friendly Services</h3>
+                    <p class="text-gray-700">Our services are nominal and pocket-friendly without compromising on
+                        quality, making sure your satisfaction and budget are our priority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- They Trust Us Section -->
+    <section id="trust" class="bg-white py-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">They Trust Us</h2>
+            <p class="text-lg text-gray-700">We have successfully assisted over 200,000 clients with their legal needs.
+            </p>
+            <!-- Add trust logos or client logos as needed -->
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">wilda</h3>
+                <p class="text-gray-400">A full service branding studio for the visionaries.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">TERMS OF SERVICE</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PRIVACY POLICY</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">GET IN TOUCH</h3>
+                <p class="text-gray-400">MON-FRIDAY 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">CONTACT</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">INSTAGRAM</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PINTEREST</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">JOIN OUR MAILING LIST</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">FIRST NAME</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">EMAIL</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">EXPLORE</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">HOME</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">SERVICES</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">OUR STORY</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">WORKS</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">GLOSSARY</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>

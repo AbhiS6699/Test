@@ -1,0 +1,580 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online GST Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+</head>
+
+<style>
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .custom-card {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        transition: visibility 0.2s, opacity 0.2s ease-in-out;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+        background: transparent;
+    }
+</style>
+
+<body class="bg-white">
+    <header class="bg-white h-20 shadow">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-3xl font-bold text-gray-800">
+                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>251</a>
+                </div>
+                <div class="flex md:hidden">
+                    <button id="nav-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd. Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
+                                License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
+                                Registration</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
+                                Drafting</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
+                                Drafting</a>
+                        </div>
+                    </div>
+                    <div class="dropdown relative">
+                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
+                                Calculator</a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                </div>
+            </div>
+            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
+                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
+                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
+                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
+                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
+                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
+                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var navMenu = document.getElementById('nav-menu');
+            var navMobileMenu = document.getElementById('nav-mobile-menu');
+            navMenu.classList.toggle('hidden');
+            navMobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="bg-white mx-8 py-16">
+        <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+            <div class="lg:w-2/3 pr-8">
+                <h1 class="text-5xl font-bold text-blue-900 leading-snug">Online GST Registration</h1>
+                <p class="mt-6 text-lg text-gray-800">Register yourself as a trusted business of this country with GST
+                    online in minutes. Our experts are ready to guide you for an easy GST Registration.</p>
+                <div class="mt-8 flex space-x-4">
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download the
+                        App Now</a>
+                    <a href="#" class="bg-black text-white px-6 py-3 rounded-full shadow hover:bg-gray-800">Download on
+                        the App Store</a>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-lg mt-12 lg:mt-0">
+                <h2 class="text-blue-500 text-xl font-semibold">Book Service Now @ ₹ 2251.00 only /- <span
+                        class="text-gray-600">(Including GST)</span></h2>
+                <form action="#" class="mt-6 space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <input type="text" id="name"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <input type="text" id="contact"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <input type="email" id="email"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <input type="text" id="city"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-500 text-white w-full py-2 rounded-md shadow hover:bg-blue-600">Proceed
+                        Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Experience Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <h3 class="text-4xl font-bold text-blue-900">10 Years</h3>
+                <p class="mt-2 text-gray-700">Of Experience</p>
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-blue-900">5000+</h3>
+                <p class="mt-2 text-gray-700">Cases Solved</p>
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-blue-900">15+</h3>
+                <p class="mt-2 text-gray-700">Awards Gained</p>
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-blue-900">200k+</h3>
+                <p class="mt-2 text-gray-700">Trusted Clients</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GST Types Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Types of GST in India</h2>
+            <p class="text-lg text-gray-700 mb-6">Currently, the types of GST in India are CGST, SGST, and IGST. This
+                simple division helps distinguish between inter-state and intra-state supplies and mitigates indirect
+                taxes. CGST stands for Central Goods and Services Tax, which the Central Government collects. SGST
+                stands for State Goods and Services Tax, and IGST stands for Integrated Goods and Services Tax. CGST,
+                SGST, and IGST work according to the place of transactions.</p>
+            <p class="text-lg text-gray-700">In the case of inter-state transactions, GST is collected as IGST, which
+                indirectly charges tax for the State and Central governments clubbed together. SGST and CGST are
+                collected in case of intrastate transactions and are both collected directly for the State and Central
+                Governments, respectively.</p>
+        </div>
+    </section>
+
+    <!-- How to Apply Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">How to Apply for GST Registration</h2>
+            <p class="text-lg text-gray-700">The GST registration process is necessary for every dealer whose annual
+                turnover exceeds Rs. 20 Lakh (can vary according to state and kind of supplies).</p>
+            <p class="text-lg text-gray-700 mb-6">The GST registration process is an easy and online process, followed
+                by using the government website gst.gov.in. All You need to do is fill out the GST REG-01 Form.</p>
+            <p class="text-lg text-gray-700 mb-6">The GST REG-01 form comes in two segments: Part A and Part B. Filing
+                both segments with correct information is mandatory.</p>
+            <p class="text-lg text-gray-700 mb-6">According to the GST Act, GST registration can differ for normal
+                taxpayers, casual taxable persons, composition taxpayers, and non-resident taxpayers.</p>
+            <p class="text-lg text-gray-700">The advantage of GST registration makes your business recognized legally
+                and avails all the benefits that come under the GST rule.</p>
+        </div>
+    </section>
+
+    <!-- Benefits of GST Registration Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Benefits of Getting GST Registration Done through Legal251
+            </h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Budget-Friendly Service</li>
+                <li>No Hidden Charges</li>
+                <li>Helps in Documentation</li>
+                <li>Reduces cascading effect</li>
+                <li>Ease of Purchase</li>
+                <li>Decreased Complex GST Registration</li>
+                <li>After Service Support</li>
+                <li>Best Virtual Assistance</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Avoiding Common Mistakes Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Avoiding Common Mistakes in GST Registration</h2>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Filling of incorrect personal details</li>
+                <li>Choosing the wrong type of GST Registration</li>
+                <li>Uploading illegible documents</li>
+                <li>Ignoring the threshold limit set by the government</li>
+                <li>More than a single registration for the same business</li>
+                <li>Opting for the wrong GST category</li>
+                <li>Not keeping an eye on the GST Registration Status</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Documents Required Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">Documents Required for GST Registration</h2>
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Sole Proprietorship / Individual</h3>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Aadhaar card</li>
+                <li>PAN Card</li>
+                <li>Photograph of the sole proprietor</li>
+                <li>Bank statement or a canceled cheque</li>
+                <li>Office address proof:</li>
+                <ul class="pl-6">
+                    <li>Own office: Copy of Registry, Property Tax Receipt</li>
+                    <li>Rented office: Rent agreement, Property Tax Receipt</li>
+                    <li>Shop & Establishment License (Gumasta)</li>
+                    <li>Trade License (Municipal Corporation)</li>
+                </ul>
+            </ul>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">HUF</h3>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Aadhaar card of Karta</li>
+                <li>PAN card of Karta</li>
+                <li>Photo of Applicant</li>
+                <li>Bank statement or a canceled cheque</li>
+                <li>PAN card of HUF</li>
+                <li>HUF Deed Document</li>
+                <li>Office address proof:</li>
+                <ul class="pl-6">
+                    <li>Own office: Copy of Registry, Property Tax Receipt</li>
+                    <li>Rented office: Rent agreement, Property Tax Receipt</li>
+                    <li>Shop & Establishment License (Gumasta)</li>
+                    <li>Trade License (Municipal Corporation)</li>
+                </ul>
+            </ul>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Partnership deed / LLP Agreement</h3>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Aadhaar card of partners</li>
+                <li>PAN Card of partners</li>
+                <li>Photograph of partners</li>
+                <li>Bank statement or a canceled cheque</li>
+                <li>Copy of Deed / Agreement Firm PAN Card</li>
+                <li>Office address proof:</li>
+                <ul class="pl-6">
+                    <li>Own office: Copy of Registry, Property Tax Receipt</li>
+                    <li>Rented office: Rent agreement, Property Tax Receipt</li>
+                    <li>Shop & Establishment License (Gumasta)</li>
+                    <li>Trade License (Municipal Corporation)</li>
+                </ul>
+            </ul>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Society / Trust / Club</h3>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Aadhaar card of President / Secretary</li>
+                <li>PAN Card of President / Secretary</li>
+                <li>Photo of President / Secretary</li>
+                <li>Bank statement or a canceled cheque</li>
+                <li>PAN card of Society / Club / Trust</li>
+                <li>Certificate of Registration</li>
+                <li>Office address proof:</li>
+                <ul class="pl-6">
+                    <li>Own office: Copy of Registry, Property Tax Receipt</li>
+                    <li>Rented office: Rent agreement, Property Tax Receipt</li>
+                    <li>Proof of authorized signatory- Board Resolution</li>
+                    <li>Shop & Establishment License (Gumasta)</li>
+                    <li>Trade License (Municipal Corporation)</li>
+                </ul>
+            </ul>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Private limited / Public limited / One person company
+            </h3>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Aadhaar card of Directors</li>
+                <li>PAN card of Directors</li>
+                <li>Photograph of Directors</li>
+                <li>Bank statement or a canceled cheque</li>
+                <li>Company’s PAN card</li>
+                <li>Certificate of Registration</li>
+                <li>MOA (Memorandum of Association)</li>
+                <li>AOA (Articles of Association)</li>
+                <li>Office address proof:</li>
+                <ul class="pl-6">
+                    <li>Own office: Copy of Registry, Property Tax Receipt</li>
+                    <li>Rented office: Rent agreement, Property Tax Receipt</li>
+                    <li>Proof of authorized signatory- Board Resolution</li>
+                    <li>Shop & Establishment License (Gumasta)</li>
+                    <li>Trade License (Municipal Corporation)</li>
+                </ul>
+            </ul>
+        </div>
+    </section>
+
+    <!-- GST Registration Importance Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">GST Registration: Importance for Business Growth</h2>
+            <p class="text-lg text-gray-700 mb-6">The GST Registration process is important for your business to grow.
+                Firstly, the process of GST registration will help you with legal tax compliance as it makes an easier
+                and more flexible taxation system for you. It also enhances your business transparency and ensures your
+                credibility in the market. With the growth of your business, you will be able to expand your business
+                roots across different regions.</p>
+            <p class="text-lg text-gray-700 mb-6">Secondly, it will open your doors for business expansion and
+                collaboration. With the proper GST registration, your business can become eligible for participation in
+                the concerned government contracts and tenders. It will help your business make more market contacts and
+                build a unique business identity.</p>
+            <p class="text-lg text-gray-700">Lastly, the complete and proper GST Registration process can also help your
+                business to streamline supply chain operations. GST registration will also provide you with financial
+                benefits, coupled with the streamlined interstate trade, position businesses for sustainable expansion
+                and success in an ever-evolving business.</p>
+        </div>
+    </section>
+
+    <!-- GST Registration for Small Businesses Section -->
+    <section class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">GST Registration for Small Businesses</h2>
+            <p class="text-lg text-gray-700 mb-6">For small businesses, GST registration provides numerous benefits such
+                as it provides the ability to claim an input tax credit. It will also benefit with easy selling of goods
+                and services across states and provide legal security as operating without a GST registration can lead
+                to heavy penalties.</p>
+            <p class="text-lg text-gray-700 mb-6">However, small businesses should take professional advice. With our
+                experienced legal experts, we'll be there to provide you with the right information and guidance related
+                to your GST registration. GST has revolutionized small businesses' work in so many ways by eliminating
+                the burden of taxation policies it helped small businesses to ease their workflows. It further helps
+                them to cross boundaries and boost their credibility within the market.</p>
+            <p class="text-lg text-gray-700">Moreover, small businesses can gain better access to loans if they have
+                complied with the GST law. Your GST registration can be done easily with the help of all the necessary
+                documents. Further, the GST registration will also provide small businesses with financial benefits,
+                coupled with their streamlined trade.</p>
+            <ul class="list-disc pl-6 text-lg text-gray-700">
+                <li>Improved ease of doing business</li>
+                <li>Unified taxation</li>
+                <li>Composition Scheme</li>
+                <li>Increased credibility</li>
+                <li>Easy access to credit</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="bg-white mx-8 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-blue-900 mb-6">FAQs on GST Registration</h2>
+            <div class="bg-blue-50 p-6 rounded-md shadow-md">
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q1. Define Goods and Services Tax (GST) Registration?
+                    </summary>
+                    <p class="mt-2 text-gray-700">Goods and Services Tax or GST Registration is a process that provides
+                        a unique 15-digit number, known as a Goods and Services Tax Identification Number (GSTIN) from
+                        the Goods and Services Tax authorities.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q2. What is the need for GST Registration?</summary>
+                    <p class="mt-2 text-gray-700">GST Registration is necessary for businesses whose turnover exceeds
+                        Rs. 20 Lakhs in a financial year. It helps in legal compliance and avails various benefits under
+                        the GST Act.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q3. When does anyone need to register under the Goods and
+                        Service Tax Act?</summary>
+                    <p class="mt-2 text-gray-700">Any business exceeding the turnover threshold needs to register under
+                        GST. Additionally, businesses involved in inter-state supply or e-commerce operators must
+                        register under the GST Act.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q4. What are the necessary documents for a new GST
+                        Registration?</summary>
+                    <p class="mt-2 text-gray-700">The necessary documents include PAN card, Aadhaar card, business
+                        registration document, and address proof. Additional documents may be required depending on the
+                        type of business entity.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q5. Is the submission of hard copies of any documents
+                        required?</summary>
+                    <p class="mt-2 text-gray-700">No, you don't have to submit the hard copies of documents as the new
+                        registration process for GST registration is paperless.</p>
+                </details>
+                <details class="mb-4">
+                    <summary class="font-semibold text-lg">Q6. What is the verification process for the new registration
+                        application?</summary>
+                    <p class="mt-2 text-gray-700">The verification process involves online validation of the documents
+                        and details provided. Once verified, the GSTIN is issued to the applicant.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 text-gray-300">
+        <div class="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Legal251</h3>
+                <p class="text-gray-400">A full-service legal solutions provider for businesses and individuals.</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">TERMS OF SERVICE</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PRIVACY POLICY</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">GET IN TOUCH</h3>
+                <p class="text-gray-400">MON-FRI 10AM-4PM EST</p>
+                <div class="mt-4">
+                    <a href="#" class="text-gray-400 hover:text-white block">CONTACT</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">INSTAGRAM</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">PINTEREST</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">JOIN OUR MAILING LIST</h3>
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="first-name" class="block text-left text-gray-400 mb-2">FIRST NAME</label>
+                        <input type="text" id="first-name" name="first-name"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your first name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-left text-gray-400 mb-2">EMAIL</label>
+                        <input type="email" id="email" name="email"
+                            class="w-full px-4 py-2 border border-gray-700 bg-black text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 transition duration-300">SUBSCRIBE</button>
+                </form>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">EXPLORE</h3>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white block">HOME</a>
+                    <a href="#services" class="text-gray-400 hover:text-white block">SERVICES</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">OUR STORY</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">WORKS</a>
+                    <a href="#" class="text-gray-400 hover:text-white block">GLOSSARY</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white block">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/7509492063" target="_blank" class="fixed bottom-4 right-4 z-50">
+        <img src="{% static 'myapp/images/whatsapp.png' %}" alt="WhatsApp" class="w-16 h-16">
+    </a>
+
+    <div id="live-chat" class="fixed bottom-4 left-4 z-50">
+        <button id="open-chat" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg">
+            Live Chat
+        </button>
+        <div id="chat-box" class="hidden mt-2 bg-white p-4 rounded-lg shadow-lg w-72">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Live Chat</h2>
+                <button id="close-chat" class="text-gray-600 hover:text-gray-900 text-xl">&times;</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-gray-600">Welcome to our live chat! How can we help you today?</p>
+                <input type="text" class="w-full px-4 py-2 border rounded mt-2" placeholder="Type your message...">
+                <button class="w-full mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('open-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.remove('hidden');
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-box').classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>

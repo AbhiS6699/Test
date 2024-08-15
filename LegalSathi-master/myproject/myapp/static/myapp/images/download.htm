@@ -1,0 +1,620 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Algo Expert - Automate Trading Tool</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="/static/css/styles.css" rel="stylesheet">
+    <link rel="icon" href="/static/images/logo.jpeg" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin-top: 0.5rem;
+            width: 12rem;
+            background: white;
+            border-radius: 0.25rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .profile-menu a:hover {
+            background: #f1f1f1;
+        }
+
+        .profile-container:hover .profile-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 50;
+            border-radius: 0.375rem;
+            ring-1 ring-black ring-opacity-5;
+        }
+
+        .group:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #4A5568;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #3B82F6;
+            color: #FFFFFF;
+        }
+
+        .profile-container {
+            position: relative;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .hero-section {
+            position: relative;
+            background: url('/static/images/test.jpeg') no-repeat center center;
+            background-size: cover;
+            height: 60vh;
+        }
+
+        .service-section {
+            position: relative;
+            background: url('/static/images/i.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 1;
+        }
+
+        .service-section:hover {
+            animation: moveBackground 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                background-position: center center;
+            }
+
+            50% {
+                background-position: center top;
+            }
+
+            100% {
+                background-position: center center;
+            }
+        }
+
+
+
+        .hamburger {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 1rem;
+                text-align: left;
+            }
+
+            .mobile-nav-links {
+                display: flex;
+                flex-direction: column;
+                padding: 0.5rem 0;
+            }
+
+            .nav-item {
+                position: relative;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="bg-blue-900 text-white">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <!-- Logo and Site Name -->
+            <div class="flex items-center space-x-2">
+                <a href="/home/"><img src="/static/images/logo.png" alt="Logo" class="h-16 ml-4"></a>
+            </div>
+            <!-- Hamburger Icon -->
+            <div class="hamburger">
+                <button id="hamburger-btn" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Navigation Links -->
+            <div id="nav-links" class="nav-links ml-auto mr-auto flex space-x-8 hidden md:flex">
+                <div class="relative nav-item group">
+                    <a href="/home/" class="hover:underline">Home</a>
+                </div>
+                <div class="relative nav-item group">
+                    <a href="/about/" class="hover:underline">About Us</a>
+                </div>
+                <div class="relative nav-item group">
+                    <a href="#" class="hover:underline">Services</a>
+                    <div class="dropdown-menu mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <a href="/algo_trading/"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-700 hover:text-white">Algo
+                            Trading</a>
+                        <a href="/api_bridge/"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-700 hover:text-white">API
+                            Bridge</a>
+                        <a href="/strategy_development/"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-700 hover:text-white">Strategy
+                            Development</a>
+                        <a href="/auto_but&amp;sell/"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-700 hover:text-white">Auto Buy
+                            Sell Signals</a>
+                    </div>
+                </div>
+                <div class="relative nav-item group">
+                    <a href="/pricing/" class="hover:underline">Subscriptions</a>
+                </div>
+                <div class="relative nav-item group">
+                    <a href="/contact/" class="hover:underline">Contact Us</a>
+                </div>
+                <div class="relative nav-item group">
+                    <a href="/payment/" class="hover:underline">Payment</a>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex space-x-4">
+                
+                <div class="relative profile-container">
+                    <button class="bg-blue-700 py-2 px-4 rounded hover:bg-blue-600 flex items-center space-x-2">
+                        <i class="fas fa-user-circle text-white"></i>
+                        <span>admin@gmail.com</span>
+                    </button>
+                    <div class="profile-menu">
+                        <a href="/profile/">My Profile</a>
+                        <a target="_blank" href="/panel/">My Panel</a> <!-- New Panel Option -->
+                        <a href="/logout/">Logout</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Links -->
+        <div id="mobile-nav-links" class="mobile-nav-links bg-blue-900 text-white hidden md:hidden flex-col w-full">
+            <a href="/home/" class="block px-4 py-2 hover:bg-blue-700">Home</a>
+            <a href="/about/" class="block px-4 py-2 hover:bg-blue-700">About Us</a>
+            <div class="relative">
+                <a href="#" class="block px-4 py-2 hover:bg-blue-700">Services</a>
+                <div class="dropdown-menu bg-blue-900 hidden">
+                    <a href="/algo_trading/" class="block px-4 py-2 hover:bg-blue-700">Algo Trading</a>
+                    <a href="/api_bridge/" class="block px-4 py-2 hover:bg-blue-700">API Bridge</a>
+                    <a href="/strategy_development/" class="block px-4 py-2 hover:bg-blue-700">Strategy
+                        Development</a>
+                    <a href="/auto_but&amp;sell/" class="block px-4 py-2 hover:bg-blue-700">Auto Buy Sell
+                        Signals</a>
+                </div>
+            </div>
+            <a href="/pricing/" class="block px-4 py-2 hover:bg-blue-700">Subscriptions</a>
+            <a href="/contact/" class="block px-4 py-2 hover:bg-blue-700">Contact Us</a>
+            <a href="/payment/" class="block px-4 py-2 hover:bg-blue-700">Payment</a>
+            
+            <a href="/profile/" class="block px-4 py-2 hover:bg-blue-700">My Profile</a>
+            <a href="/panel/" class="block px-4 py-2 hover:bg-blue-700">My Panel</a>
+            <a href="/logout/" class="block px-4 py-2 hover:bg-blue-700">Logout</a>
+            
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container mx-auto relative z-10 hero-content text-center py-16">
+            <h1 class="text-5xl text-white font-bold">Artificial Intelligence Algorithmic Trading</h1>
+            <div class="mt-8 flex flex-col justify-center space-y-4">
+                <p id="scrolling-text-1" class="text-3xl text-white font-semibold whitespace-nowrap overflow-hidden">
+                    Best Platform For Automating Trading
+                </p>
+                <p id="scrolling-text-2" class="text-2xl text-white whitespace-nowrap overflow-hidden">
+                    Algo trading software for Indian stock market
+                </p>
+            </div>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="/login/" class="bg-black text-white py-2 px-6 rounded hover:bg-blue-600">Login</a>
+                <a href="/signup/"
+                    class="bg-black text-white py-2 px-6 rounded hover:bg-blue-600">Register</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('hamburger-btn').addEventListener('click', function () {
+            const mobileNav = document.getElementById('mobile-nav-links');
+            if (mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.remove('hidden');
+            } else {
+                mobileNav.classList.add('hidden');
+            }
+        });
+
+        // Text Scrolling Animation for both lines
+        const textContent1 = "Best Platform For Automating Trading";
+        const textContent2 = "Algo trading software for Indian stock market";
+
+        const scrollingText1 = document.getElementById('scrolling-text-1');
+        const scrollingText2 = document.getElementById('scrolling-text-2');
+
+        scrollingText1.textContent = '';
+        scrollingText2.textContent = '';
+
+        let index1 = 0;
+        let index2 = 0;
+
+        function typeWriter1() {
+            if (index1 < textContent1.length) {
+                scrollingText1.textContent += textContent1.charAt(index1);
+                index1++;
+                setTimeout(typeWriter1, 100);
+            } else {
+                setTimeout(() => {
+                    index1 = 0;
+                    scrollingText1.textContent = '';
+                    typeWriter1();
+                }, 3000);
+            }
+        }
+
+        function typeWriter2() {
+            if (index2 < textContent2.length) {
+                scrollingText2.textContent += textContent2.charAt(index2);
+                index2++;
+                setTimeout(typeWriter2, 100);
+            } else {
+                setTimeout(() => {
+                    index2 = 0;
+                    scrollingText2.textContent = '';
+                    typeWriter2();
+                }, 3000);
+            }
+        }
+
+        typeWriter1();
+        typeWriter2();
+    </script>
+
+    <style>
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+
+    <section class="py-16 bg-topography px-8 lg:px-24 service-section">
+        <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/analytics.gif" alt="Market Analysis Tools" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Market Analysis Tools</h3>
+                <p class="mt-2 text-gray-600">Get real-time insights and analysis of market trends to make informed
+                    trading decisions.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/risk.gif" alt="Automated Trading Strategies" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Automated Trading Strategies</h3>
+                <p class="mt-2 text-gray-600">Deploy automated trading strategies to execute trades quickly and
+                    efficiently.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/risk.gif" alt="Risk Management Features" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Risk Management Features</h3>
+                <p class="mt-2 text-gray-600">Utilize advanced risk management tools to minimize losses and protect your
+                    investments.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/presentation.gif" alt="Diverse Asset Classes" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Full API Integration</h3>
+                <p class="mt-2 text-gray-600">Alalgo expert covers the full life cycle of algorithmic trading. Starting
+                    from Entry to Stoploss and Target. Everything can be managed directly from API Platform.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/notification.gif" alt="Real-Time Alerts" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Multiple Strategies</h3>
+                <p class="mt-2 text-gray-600">You can Execute multiple Strategies to your Trading account at once and
+                    See the profitability of individual strategies on the Aialgo expert platform.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="flex justify-center mb-4">
+                    <img src="/static/images/analytics%20(1).gif" alt="Comprehensive Reporting" class="h-24 w-24">
+                </div>
+                <h3 class="text-xl font-semibold">Automation</h3>
+                <p class="mt-2 text-gray-600">Alalgo expert provides a wide range of useful features to create
+                    quantitative trading strategies. Using Alalgo expert you can execute any order type in the market.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-16 bg-white px-8 lg:px-24">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center bg-white rounded-section shadow-lg">
+            <div class="lg:w-1/2 p-8">
+                <h2 class="text-3xl font-semibold mb-4">Our Services</h2>
+                <p class="text-gray-600 mb-8">
+                    Aialgo expert is India’s most effective Algo trading platform for retail traders and investors in
+                    India.
+                    Made with a simple vision of making algo trading accessible to every trader/investor at a very
+                    effective price.
+                    The platform aims at providing retail traders with speed and precision in order placement across
+                    various platforms
+                    and brokers and making their trading/investing journey more smoother and profitable.
+                </p>
+            </div>
+            <div class="lg:w-1/2 flex justify-center lg:justify-end p-8">
+                <img src="/static/images/services.jpeg" alt="Services Image"
+                    class="rounded-lg shadow-lg max-w-full">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white px-8 lg:px-24">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center bg-white rounded-section shadow-lg">
+            <div class="lg:w-1/2 p-8">
+                <h2 class="text-3xl font-semibold mb-4">Features</h2>
+                <p class="text-gray-600 mb-8">
+                    AlalgoExpert Trading
+                </p>
+                <p class="text-gray-600 mb-8">
+                    Technical analysis is going mainstream as a new generation is participating in financial markets and
+                    it’s all happening on AUTOMATION.
+                    It’s the future as it reduces most of the problems with Manual Trading.
+                    With thousands of technical indicators to choose from and infinite market dynamics to see in
+                    real-time,
+                    there is a growing amount of traders searching for a more powerful experience with the technical
+                    trading tools,
+                    Which can be completely Automated.
+                </p>
+            </div>
+            <div class="lg:w-1/2 flex justify-center lg:justify-end p-8">
+                <img src="/static/images/feature.jpeg" alt="Features Image"
+                    class="rounded-lg shadow-lg max-w-full">
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .icon {
+            height: 50px;
+            width: 50px;
+        }
+
+        .rounded-section {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+    </style>
+
+    <section class="py-16 bg-white px-8 lg:px-24">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between">
+            <div class="text-center lg:text-left mb-8 lg:mb-0 lg:w-1/2">
+                <h2 class="text-3xl font-semibold mb-4">Facts & Figure</h2>
+                <h3 class="text-4xl font-bold mb-4">Best Growing Trading Platform</h3>
+                <p class="text-gray-600 mb-8">To provide fast and reliable trading platforms that seamlessly connect
+                    with your desired broker and help you place trades systematically. We want to empower every retail
+                    trader with the power of algorithms and automation to make their trading journey smoother and more
+                    profitable.</p>
+                <ul class="list-disc list-inside text-left text-gray-600 mb-8">
+                    <li class="mb-2 flex items-center"><span class="mr-2 text-blue-600">✔</span> CONNECT WITH BROKER
+                    </li>
+                    <li class="mb-2 flex items-center"><span class="mr-2 text-blue-600">✔</span> TRADES ARE SECURELY
+                        EXECUTED IN FRACTION OF SECONDS</li>
+                    <li class="mb-2 flex items-center"><span class="mr-2 text-blue-600">✔</span> ULTRAFAST ORDER
+                        EXECUTION</li>
+                </ul>
+                <a href="#" class="bg-blue-600 text-white py-2 px-6 rounded-lg inline-block">Check All Services</a>
+            </div>
+            <div class="flex flex-col items-center space-y-8 lg:w-1/2">
+                <div class="flex items-center space-x-4">
+                    <img src="/static/images/satisfaction.png" alt="User Satisfaction" class="icon">
+                    <p class="text-xl font-semibold">100% User Satisfaction</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="/static/images/customer.png" alt="Client Base" class="icon">
+                    <p class="text-xl font-semibold">50K+ client base</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <img src="/static/images/help-desk.png" alt="Support" class="icon">
+                    <p class="text-xl font-semibold">24H Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .testimonial-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .testimonial-card .profile {
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .testimonial-card .quote {
+            font-size: 24px;
+            color: #888;
+        }
+    </style>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-2">Testimonials</h2>
+            <h3 class="text-2xl font-semibold mb-4">We Love our Clients</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 testimonial-card">
+                    <p class="text-gray-600 mb-8">I am really thankful to aialgo expert software. With the help of their
+                        software, I'm able to earn profit.</p>
+                </div>
+                <div class="bg-white p-6 testimonial-card">
+                    <p class="text-gray-600 mb-8">It is good to work with aialgo software they have the accurate
+                        knowledge and experience in the stock market.</p>
+                </div>
+                <div class="bg-white p-6 testimonial-card">
+                    <p class="text-gray-600 mb-8">In the stock market, good service to the client is to work towards
+                        their needs and expectations. I'm very happy with Aialgo expert.</p>
+                </div>
+                <div class="bg-white p-6 testimonial-card">
+                    <p class="text-gray-600 mb-8">Highly recommend if you are looking for professional service in
+                        trading.</p>
+                </div>
+                <div class="bg-white p-6 testimonial-card">
+                    <p class="text-gray-600 mb-8">Best team, really professional guys at aialgo expert. Keep it up.</p>
+                </div>
+                <div class="bg-white p-6 testimonial-card">
+                    <img src="/static/images/testimonials-placeholder.png" alt="Testimonials Image"
+                        class="rounded-lg shadow-lg max-w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <footer class="bg-black py-8 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <!-- Logo and Description -->
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <img src="/static/images/logo.jpeg" alt="Logo" class="h-12 w-12 mr-2">
+                        <span class="text-xl text-white font-bold">AI Algo Expert</span>
+                    </div>
+                    <p class="text-white">A highly-automated trading algorithms that allows to place trades
+                        automatically.</p>
+                </div>
+
+                <!-- Important Links -->
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-lg text-white font-semibold mb-4">Important links</h3>
+                    <ul class="text-gray-300">
+                        <li class="mb-2 flex items-center"><i class="fas fa-fingerprint mr-2"></i><a
+                                href="/term&amp;condition/" class="hover:text-white">Terms and conditions</a></li>
+                        <li class="mb-2 flex items-center"><i class="fas fa-file-alt mr-2"></i><a
+                                href="/disclaimer/" class="hover:text-white">Disclaimer</a></li>
+                        <li class="mb-2 flex items-center"><i class="fas fa-dollar-sign mr-2"></i><a
+                                href="/refund_policy/" class="hover:text-white">Refund policy</a></li>
+                        <li class="mb-2 flex items-center"><i class="fas fa-envelope mr-2"></i><a
+                                href="/contact/" class="hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-lg text-white font-semibold mb-4">Keep in touch any time.</h3>
+                    <ul class="text-gray-300">
+                        <li class="mb-2 flex items-center"><i class="fas fa-phone-alt mr-2"></i><a
+                                href="tel:+918982643215">+ 91 918982643215</a></li>
+                        <li class="mb-2 flex items-center"><i class="fas fa-envelope mr-2"></i><a
+                                href="mailto:info@aialgoexpert.com">info@aialgoexpert.com</a>
+                        </li>
+                        <li class="mb-2 flex items-center"><i class="fas fa-map-marker-alt mr-2"></i>MG road, Indore,
+                            452001</li>
+                    </ul>
+                </div>
+
+                <!-- Disclaimer -->
+                <div class="w-full md:w-1/4">
+                    <p class="text-gray-300 mb-4">AI Algo Expert is an algotrading platform that connects various
+                        platforms
+                        like Amibroker, MT4, and TradingView to your broker via API, and helps retail traders and
+                        investors manage their wealth smartly.</p>
+                    <p class="text-gray-300">Note: Please consult your financial advisor before investing/trading via
+                        our platform. AI Algo Expert is not liable for any losses that occurred due to any reason
+                        whatsoever
+                        due to our platform.</p>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-500">
+            <p>AI Algo Expert is India’s most promising Algo trading platform for retail traders and investors in India.
+                Made
+                with a simple vision of making algo trading accessible to every trader/investor at a very economical
+                price. The platform aims at providing retail traders with speed and precision in order placement across
+                various platforms and brokers and making their trading/investing journey more smoother and profitable.
+            </p>
+            <p class="mt-4">&copy; 2023 AI Algo Expert. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('hamburger-btn').addEventListener('click', function () {
+            const mobileNav = document.getElementById('mobile-nav-links');
+            if (mobileNav.classList.contains('hidden')) {
+                mobileNav.classList.remove('hidden');
+            } else {
+                mobileNav.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- Add WhatsApp Button -->
+    <div class="fixed bottom-4 right-4">
+        <a href="https://wa.me/9111724765" target="_blank">
+            <img src="/static/images/whatsapp.png" alt="WhatsApp" class="h-12 w-12 rounded-full shadow-lg">
+        </a>
+    </div>
+
+</body>
+
+</html>
