@@ -39,6 +39,23 @@
             overflow: hidden;
         }
 
+        .swiper-container {
+            padding: 20px 0;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
         .swiper-button-next,
         .swiper-button-prev {
             position: absolute;
@@ -139,15 +156,19 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
                                 <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}"
+                                            src="{% static 'myapp/images/handshake.png' %}"
                                             alt="Partnership Deed">Partnership Deed</a></li>
                                 <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Pvt. Ltd.
+                                            src="{% static 'myapp/images/enterprise.png' %}"
+                                            alt="Pvt. Ltd. Company">Pvt. Ltd.
                                         Company Registration</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">Section 8 Company Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'section_8' %}"><img
+                                            src="{% static 'myapp/images/building.png' %}" alt="Section 8">Section 8
+                                        Company
+                                        Registration</a></li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">LLP Registration</a></li>
+                                            src="{% static 'myapp/images/website.png' %}" alt="LLP">LLP Registration</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -156,10 +177,17 @@
                                 Change in Business
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="changeBusinessDropdown">
-                                <li><a class="dropdown-item" href="{% url 'dissolution_of_partnership' %}"><img src="{% static 'images/dissolution.png' %}"
-                                            alt="Dissolution">Dissolution of Deeds</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/options.png' %}"
-                                            alt="Business Options">Business Options</a></li>
+                                <li><a class="dropdown-item" href="{% url 'dissolution_of_partnership' %}"><img
+                                            src="{% static 'myapp/images/disagreement.png' %}"
+                                            alt="Dissolution">Dissolution of
+                                        Deeds</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Director</a></li>
+                                <li><a class="dropdown-item" href="{% url 'remove_director' %}"><img
+                                            src="{% static 'myapp/images/user (1).png' %}" alt="Business Options">Remove
+                                        Director</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Partner</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -168,22 +196,21 @@
                                 Registration
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Import
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/lawyer.png' %}"
+                                            alt="Partnership Deed">Import
                                         Export License</a></li>
                                 <li><a class="dropdown-item" href="{% url 'trade_mark_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Trademark
+                                            src="{% static 'myapp/images/trademark.png' %}"
+                                            alt="Pvt. Ltd. Company">Trademark
                                         Registration</a></li>
-                                <li><a class="dropdown-item" href="{% url 'food_license' %}"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">Food Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'food_license' %}"><img
+                                            src="{% static 'myapp/images/fast-food.png' %}" alt="Section 8">Food
+                                        Registration</a></li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="#" alt="LLP">Gumasta License</a></li>
+                                            src="{% static 'myapp/images/gst.png' %}" alt="LLP">GST Registration</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="#" alt="LLP">MSME Registration</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% url 'gst_registration' %}" alt="LLP">GST Registration</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="#" alt="LLP">PF Registration</a></li>
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Registration</a></li>
 
 
 
@@ -196,19 +223,16 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
                                 <li><a class="dropdown-item" href="{% url 'gst_return_filing' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">GST
+                                            src="{% static 'myapp/images/gst.png' %}" alt="Partnership Deed">GST
                                         Return Filing</a></li>
                                 <li><a class="dropdown-item" href="{% url 'itr_filing' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">ITR
+                                            src="{% static 'myapp/images/tax.png' %}" alt="Pvt. Ltd. Company">ITR
                                         Filing</a></li>
-                                <li><a class="dropdown-item" href="{% url 'tds_return_filing' %}"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">TDS Return Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tds_return_filing' %}"><img
+                                            src="{% static 'myapp/images/bill.png' %}" alt="Section 8">TDS Return
+                                        Filing</a></li>
                                 <li><a class="dropdown-item" href="{% url 'pf_return_filing' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">PF Return Filing</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">ESIC Filing</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Online Accounting</a></li>
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Return Filing</a></li>
 
 
                             </ul>
@@ -220,28 +244,13 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
                                 <li><a class="dropdown-item" href="{% url 'legal_drafting' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Legal
+                                            src="{% static 'myapp/images/compliant.png' %}" alt="Partnership Deed">Legal
                                         Drafting</a></li>
                                 <li><a class="dropdown-item" href="{% url 'rent_agreement' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Rent
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="Pvt. Ltd. Company">Rent
                                         Agreement</a></li>
-                                <li><a class="dropdown-item" href="{% url 'noc' %}"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">NOC</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Affidavit</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Will</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Application Form</a></li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Privacy Policy Drafting</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Terms & Condition Drafting</a>
-                                </li>
-
-
-
+                                <li><a class="dropdown-item" href="{% url 'noc' %}"><img
+                                            src="{% static 'images/section8.png' %}" alt="Section 8">NOC</a></li>
 
                             </ul>
                         </li>
@@ -252,23 +261,26 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
                                 <li><a class="dropdown-item" href="{% url 'GST_calculator' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="GST Calculator">GST
+                                            src="{% static 'myapp/images/gst.png' %}" alt="GST Calculator">GST
                                         Calculator</a></li>
                                 <li><a class="dropdown-item" href="{% url 'EMI_calculator' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">EMI
+                                            src="{% static 'myapp/images/loan.png' %}" alt="Pvt. Ltd. Company">EMI
                                         Calculator</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/bill.png' %}"
                                             alt="Section 8">TDS Calculator</a></li>
                                 <li><a class="dropdown-item" href="{% url 'sip_calculator' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">SIP Calculator</a></li>
+                                            src="{% static 'myapp/images/investment.png' %}" alt="LLP">SIP
+                                        Calculator</a></li>
                                 <li><a class="dropdown-item" href="{% url 'FD_calculator' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">FD Calculator</a></li>
+                                            src="{% static 'myapp/images/money.png' %}" alt="LLP">FD Calculator</a></li>
                                 <li><a class="dropdown-item" href="{% url '80U_calculator' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">80U Calculator</a></li>
+                                            src="{% static 'myapp/images/80u.png' %}" alt="LLP">80U Calculator</a></li>
                                 <li><a class="dropdown-item" href="{% url 'HRA_calculator' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">HRA Calculator</a></li>
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="LLP">HRA Calculator</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{% url 'simple_calculator' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Simple Interest Calculator</a>
+                                            src="{% static 'myapp/images/calculator.png' %}" alt="LLP">Simple Interest
+                                        Calculator</a>
                                 </li>
 
 
@@ -358,7 +370,9 @@
                 <div
                     class="mt-10 md:mt-0 request-form md:w-1/3 rounded-lg bg-white shadow-md p-6 md:pr-6 md:pl-6 transition-transform duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Request a Service</h2>
-                    <form id="service-request-form" class="space-y-4">
+                    <form id="service-request-form" class="space-y-4" action="{% url 'service_request' %}"
+                        method="post">
+                        {% csrf_token %}
                         <div class="relative">
                             <label for="name" class="block text-gray-700 font-medium mb-1">Name</label>
                             <input type="text" id="name" name="name"
@@ -392,6 +406,7 @@
                         <button type="submit"
                             class="w-full px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg transition-transform duration-300 ease-in-out hover:bg-blue-700 hover:scale-105">Submit</button>
                     </form>
+
                 </div>
             </div>
         </section>
@@ -492,6 +507,10 @@
                 /* Center the text horizontally */
             }
 
+            .body-no-scroll {
+                overflow: hidden;
+            }
+
             /* Colorful and bold scrolling text */
             #scrolling-text {
                 font-size: 3rem;
@@ -510,6 +529,7 @@
         </style>
 
         <script>
+            // Text content for the typewriter effect
             const textContents = [
                 "Welcome to LegalSathi",
                 "Your Trusted Online Legal Partner"
@@ -537,29 +557,66 @@
                 }
             }
 
+            // Start the typewriter effect
             typeWriter();
 
+            // Event listener for form submission
             document.getElementById('service-request-form').addEventListener('submit', function (event) {
+                // Allow form to be submitted normally
                 event.preventDefault();
-                document.getElementById('thank-you-modal').classList.remove('hidden');
-                document.getElementById('thank-you-modal').style.display = 'flex';
-                // Clear the form
-                document.getElementById('service-request-form').reset();
+
+                const form = event.target;
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value,
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // Show the thank you modal only after the email is successfully sent
+                            document.getElementById('thank-you-modal').classList.remove('hidden');
+                            document.getElementById('thank-you-modal').style.display = 'flex';
+
+                            document.body.classList.add('body-no-scroll');
+
+                            // Clear the form
+                            form.reset();
+                        } else {
+                            // Handle errors, e.g., display an error message to the user
+                            alert('There was a problem with your submission. Please try again.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was an error processing your request. Please try again.');
+                    });
             });
 
+            // Close modal on clicking the close button
             document.getElementById('close-modal').addEventListener('click', function () {
                 document.getElementById('thank-you-modal').classList.add('hidden');
                 document.getElementById('thank-you-modal').style.display = 'none';
+
+                document.body.classList.remove('body-no-scroll');
+
             });
 
+            // Close modal when clicking outside of it
             document.addEventListener('click', function (event) {
                 if (event.target === document.getElementById('thank-you-modal')) {
                     document.getElementById('thank-you-modal').classList.add('hidden');
                     document.getElementById('thank-you-modal').style.display = 'none';
+
+                    document.body.classList.remove('body-no-scroll');
+
                 }
             });
-        </script>
 
+        </script>
 
         <section id="expert-legal-services" class="py-5 bg-white">
             <div class="container mx-auto text-center">
@@ -573,160 +630,162 @@
                         <!-- Slide 1 -->
                         <div class="swiper-slide">
                             <div class="grid grid-cols-5 gap-4">
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'food_license' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
                                         <img src="{% static 'myapp/images/guarantee.png' %}" alt="Food Licence"
                                             class="w-full h-full object-contain">
                                     </div>
                                     <p class="text-gray-800 font-semibold text-sm">Food Licence</p>
-                                </div>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'legal_drafting' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
                                         <img src="{% static 'myapp/images/drafts.png' %}" alt="Legal Drafting"
                                             class="w-full h-full object-contain">
                                     </div>
                                     <p class="text-gray-800 font-semibold text-sm">Legal Drafting</p>
-                                </div>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'gst_return_filing' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/document.png' %}" alt="Affidavit"
+                                        <img src="{% static 'myapp/images/gst.png' %}" alt="Affidavit"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Affidavit</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">GST Return Filing</p>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'itr_filing' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/will.png' %}" alt="Will"
+                                        <img src="{% static 'myapp/images/tax.png' %}" alt="Will"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Will</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">ITR Filing</p>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'rent_agreement' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/agreement.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Rent Agreement</p>
+                                </a>
+                                <a href="{% url 'trade_mark_registration' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/trademark.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Trademark Registration</p>
+                                </a>
+                                <a href="{% url 'partnership-deed' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/handshake.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Partnership Deed</p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/enterprise.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Private Limited Company Registration
+                                    </p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/website.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">LLP Registration</p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/user.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">Add Partner</p>
+                                </a>
                             </div>
                         </div>
 
                         <!-- Slide 2 -->
                         <div class="swiper-slide">
                             <div class="grid grid-cols-5 gap-4">
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'pf_return_filing' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/guarantee.png' %}" alt="Food Licence"
+                                        <img src="{% static 'myapp/images/pf.png' %}" alt="Food Licence"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Food Laila</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">PF Return Filing</p>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'legal_drafting' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
                                         <img src="{% static 'myapp/images/drafts.png' %}" alt="Legal Drafting"
                                             class="w-full h-full object-contain">
                                     </div>
                                     <p class="text-gray-800 font-semibold text-sm">Legal Drafting</p>
-                                </div>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'gst_return_filing' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/document.png' %}" alt="Affidavit"
+                                        <img src="{% static 'myapp/images/gst.png' %}" alt="Affidavit"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Affidavit</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">GST Return Filing</p>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'itr_filing' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/will.png' %}" alt="Will"
+                                        <img src="{% static 'myapp/images/tax.png' %}" alt="Will"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Will</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">ITR Filing</p>
+                                </a>
 
-                                <div class="flex flex-col items-center">
+                                <a href="{% url 'rent_agreement' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/agreement.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Rent Agreement</p>
+                                </a>
+                                <a href="{% url 'trade_mark_registration' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/trademark.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Trademark Registration</p>
+                                </a>
+                                <a href="{% url 'partnership-deed' %}" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/handshake.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Partnership Deed</p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/enterprise.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">Private Limited Company Registration
+                                    </p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/website.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
-                                <div class="flex flex-col items-center">
+                                    <p class="text-gray-800 font-semibold text-sm">LLP Registration</p>
+                                </a>
+                                <a href="#online-accounting" class="flex flex-col items-center">
                                     <div class="w-20 h-20 mb-2">
-                                        <img src="{% static 'myapp/images/accounting.png' %}" alt="Online Accounting"
+                                        <img src="{% static 'myapp/images/user.png' %}" alt="Online Accounting"
                                             class="w-full h-full object-contain">
                                     </div>
-                                    <p class="text-gray-800 font-semibold text-sm">Online Accounting</p>
-                                </div>
+                                    <p class="text-gray-800 font-semibold text-sm">Add Partner</p>
+                                </a>
                             </div>
                         </div>
 
@@ -739,6 +798,7 @@
                 </div>
             </div>
         </section>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -775,7 +835,7 @@
                         <div class="swiper-slide">
                             <div class="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
                                 <div class="w-20 h-20 mb-2">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Tax Experts"
+                                    <img src="{% static 'myapp/images/badge.png' %}" alt="Tax Experts"
                                         class="w-full h-full object-contain">
                                 </div>
                                 <p class="text-gray-800 font-semibold text-sm">Tax Experts</p>
@@ -785,7 +845,7 @@
                         <div class="swiper-slide">
                             <div class="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
                                 <div class="w-20 h-20 mb-2">
-                                    <img src="{% static 'myapp/images/tax-filing.png' %}" alt="Tax Filing"
+                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Tax Filing"
                                         class="w-full h-full object-contain">
                                 </div>
                                 <p class="text-gray-800 font-semibold text-sm">Tax Filing</p>
@@ -795,7 +855,7 @@
                         <div class="swiper-slide">
                             <div class="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
                                 <div class="w-20 h-20 mb-2">
-                                    <img src="{% static 'myapp/images/tax-planning.png' %}" alt="Tax Planning"
+                                    <img src="{% static 'myapp/images/planning.png' %}" alt="Tax Planning"
                                         class="w-full h-full object-contain">
                                 </div>
                                 <p class="text-gray-800 font-semibold text-sm">Tax Planning</p>
@@ -805,20 +865,20 @@
                         <div class="swiper-slide">
                             <div class="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
                                 <div class="w-20 h-20 mb-2">
-                                    <img src="{% static 'myapp/images/consultancy.png' %}" alt="Consultancy"
+                                    <img src="{% static 'myapp/images/consultation.png' %}" alt="Consultancy"
                                         class="w-full h-full object-contain">
                                 </div>
-                                <p class="text-gray-800 font-semibold text-sm">Consultancy</p>
+                                <p class="text-gray-800 font-semibold text-sm">Tax Consultancy</p>
                             </div>
                         </div>
                         <!-- Slide 5 -->
                         <div class="swiper-slide">
                             <div class="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
                                 <div class="w-20 h-20 mb-2">
-                                    <img src="{% static 'myapp/images/tax-consultancy.png' %}" alt="Tax Consultancy"
+                                    <img src="{% static 'myapp/images/updated.png' %}" alt="Tax Consultancy"
                                         class="w-full h-full object-contain">
                                 </div>
-                                <p class="text-gray-800 font-semibold text-sm">Tax Consultancy</p>
+                                <p class="text-gray-800 font-semibold text-sm">Update On Law</p>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -875,18 +935,17 @@
             #why-choose-us-new {
                 background-color: #f8f9fa;
             }
-            
+
             #why-choose-us-new .icon img {
                 max-width: 50px;
                 margin-bottom: 10px;
             }
-            
+
             #why-choose-us-new h5 {
                 font-size: 1.1rem;
                 font-weight: 600;
                 margin-bottom: 0;
             }
-            
         </style>
 
         <section id="why-choose-us-new" class="py-20 bg-white">
@@ -894,7 +953,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h2 class="display-4 font-weight-bold text-dark mb-4">Why Choose <span
-                                class="text-primary">Us?</span></h2>
+                                class="text-primary">Legal <span class="text-black">Sathi</span>?</h2>
                         <p class="lead text-muted mb-4">We are committed to providing top-quality legal services to help
                             you navigate your legal matters with ease and confidence. With years of experience and a
                             team of dedicated professionals, we ensure your legal needs are handled with the utmost
@@ -910,43 +969,47 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row">
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Trusted Advisors" class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/trust.png' %}" alt="Trusted Advisors"
+                                        class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">Trusted Advisors</h5>
                                 </div>
-                                <h5 class="font-weight-bold">Trusted Advisors</h5>
                             </div>
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="10 Years of Experience"
-                                        class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/best-customer-experience.png' %}"
+                                        alt="10 Years of Experience" class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">10 Years of Experience</h5>
                                 </div>
-                                <h5 class="font-weight-bold">10 Years of Experience</h5>
                             </div>
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Dedicated Experts" class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/expert.png' %}" alt="Dedicated Experts"
+                                        class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">Dedicated Experts</h5>
                                 </div>
-                                <h5 class="font-weight-bold">Dedicated Experts</h5>
                             </div>
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Safe & Secure" class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/shield.png' %}" alt="Safe & Secure"
+                                        class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">Safe & Secure</h5>
                                 </div>
-                                <h5 class="font-weight-bold">Safe & Secure</h5>
                             </div>
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Digital Platform" class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/social-media.png' %}" alt="Digital Platform"
+                                        class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">Digital Platform</h5>
                                 </div>
-                                <h5 class="font-weight-bold">Digital Platform</h5>
                             </div>
-                            <div class="col-md-6 mb-4 text-center">
-                                <div class="icon mb-3">
-                                    <img src="{% static 'myapp/images/tax.png' %}" alt="Round Clock Support"
-                                        class="img-fluid">
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex align-items-center">
+                                    <img src="{% static 'myapp/images/help-desk.png' %}" alt="Round Clock Support"
+                                        class="img-fluid mr-3" style="max-width: 50px;">
+                                    <h5 class="font-weight-bold mb-0">Round Clock Support</h5>
                                 </div>
-                                <h5 class="font-weight-bold">Round Clock Support</h5>
                             </div>
                         </div>
                     </div>
@@ -956,22 +1019,23 @@
 
 
 
+
         <section id="testimonials" class="py-20 bg-gray-50">
             <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-gray-800">Love From Our Clients</h2>
+                <h2 class="text-4xl font-bold text-gray-800"><span class="text-red-600">Love</span> From Our <span
+                        class="text-purple-400">Clients</span></h2>
                 <p class="mt-4 text-gray-600">Our customers love the convenience of filing with us and appreciate our
                     expertise in getting their Legal work done on time. We value the trust our clients place in us, and
-                    we
-                    strive to provide them with the best service possible.</p>
+                    we strive to provide them with the best service possible.</p>
                 <div class="mt-10">
                     <div class="splide" id="testimonial-carousel">
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <li class="splide__slide">
                                     <div class="bg-white rounded-lg shadow-lg p-6">
-                                        <div class="flex items-center justify-start mb-4">
+                                        <div class="flex items-center mb-4">
                                             <img src="{% static 'myapp/images/commercial.png' %}" alt="Client 1"
-                                                class="w-16 h-16 mr-4">
+                                                class="w-16 h-16 rounded-full mr-4">
                                             <div class="text-left">
                                                 <h4 class="text-xl font-bold text-gray-800">Kailash Chandra Verma</h4>
                                                 <p class="text-gray-600">Proprietor, Balaji Apparels</p>
@@ -979,16 +1043,11 @@
                                         </div>
                                         <div class="text-left">
                                             <p class="text-gray-600">"Filing my GST returns had been an absolute
-                                                nightmare
-                                                until I found legalsathi. The interface is so easy to use, it makes
-                                                filing
-                                                my
-                                                returns on time a breeze. I can easily keep track of all my invoices and
-                                                payments and legalsathi experts even provides helpful tips for me to
-                                                make
-                                                sure
-                                                that everything is done correctly. Thanks to legalsathi team, filing GST
-                                                returns has become stress-free!"</p>
+                                                nightmare until I found legalsathi. The interface is so easy to use, it
+                                                makes filing my returns on time a breeze. I can easily keep track of all
+                                                my invoices and payments and legalsathi experts even provides helpful
+                                                tips for me to make sure that everything is done correctly. Thanks to
+                                                legalsathi team, filing GST returns has become stress-free!"</p>
                                             <div class="mt-4 flex items-center">
                                                 <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
                                                 <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
@@ -1003,9 +1062,9 @@
                                 </li>
                                 <li class="splide__slide">
                                     <div class="bg-white rounded-lg shadow-lg p-6">
-                                        <div class="flex items-center justify-start mb-4">
+                                        <div class="flex items-center mb-4">
                                             <img src="{% static 'myapp/images/commercial.png' %}" alt="Client 2"
-                                                class="w-16 h-16 mr-4">
+                                                class="w-16 h-16 rounded-full mr-4">
                                             <div class="text-left">
                                                 <h4 class="text-xl font-bold text-gray-800">Virendra Vishwakarma</h4>
                                                 <p class="text-gray-600">Founder, Tirth Enterprises</p>
@@ -1013,16 +1072,12 @@
                                         </div>
                                         <div class="text-left">
                                             <p class="text-gray-600">"I was having a hard time filing my GST returns and
-                                                was
-                                                really confused as to how to go about it. That's when I came across
-                                                legalsathi.
-                                                They were thorough professionals who made sure that my documents were
-                                                filed
-                                                perfectly without any errors. Their customer service was also top-notch
-                                                and
-                                                they guided me through the entire process with ease. I'm glad I chose
-                                                legalsathi
-                                                for filing my GST returns. Highly recommended!"</p>
+                                                was really confused as to how to go about it. That's when I came across
+                                                legalsathi. They were thorough professionals who made sure that my
+                                                documents were filed perfectly without any errors. Their customer
+                                                service was also top-notch and they guided me through the entire process
+                                                with ease. I'm glad I chose legalsathi for filing my GST returns. Highly
+                                                recommended!"</p>
                                             <div class="mt-4 flex items-center">
                                                 <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
                                                 <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
@@ -1037,9 +1092,55 @@
                                 </li>
                                 <li class="splide__slide">
                                     <div class="bg-white rounded-lg shadow-lg p-6">
-                                        <div class="flex items-center justify-start mb-4">
+                                        <div class="flex items-center mb-4">
                                             <img src="{% static 'myapp/images/commercial.png' %}" alt="Client 3"
-                                                class="w-16 h-16 mr-4">
+                                                class="w-16 h-16 rounded-full mr-4">
+                                            <div class="text-left">
+                                                <h4 class="text-xl font-bold text-gray-800">Client 3</h4>
+                                                <p class="text-gray-600">Position, Company</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="text-gray-600">"Very satisfied with the service."</p>
+                                            <div class="mt-4 flex items-center">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <span class="ml-2 text-yellow-500 font-semibold">"Great Service"</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <div class="bg-white rounded-lg shadow-lg p-6">
+                                        <div class="flex items-center mb-4">
+                                            <img src="{% static 'myapp/images/commercial.png' %}" alt="Client 3"
+                                                class="w-16 h-16 rounded-full mr-4">
+                                            <div class="text-left">
+                                                <h4 class="text-xl font-bold text-gray-800">Client 3</h4>
+                                                <p class="text-gray-600">Position, Company</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">
+                                            <p class="text-gray-600">"Very satisfied with the service."</p>
+                                            <div class="mt-4 flex items-center">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <img src="https://via.placeholder.com/20" alt="Star" class="w-5 h-5">
+                                                <span class="ml-2 text-yellow-500 font-semibold">"Great Service"</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide">
+                                    <div class="bg-white rounded-lg shadow-lg p-6">
+                                        <div class="flex items-center mb-4">
+                                            <img src="{% static 'myapp/images/commercial.png' %}" alt="Client 3"
+                                                class="w-16 h-16 rounded-full mr-4">
                                             <div class="text-left">
                                                 <h4 class="text-xl font-bold text-gray-800">Client 3</h4>
                                                 <p class="text-gray-600">Position, Company</p>
@@ -1064,6 +1165,7 @@
                 </div>
             </div>
         </section>
+
 
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/js/splide.min.js"></script>
         <script>

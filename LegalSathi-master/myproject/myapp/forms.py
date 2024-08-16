@@ -22,3 +22,14 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'password', 'remember_me')
+
+class ServiceRequestForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    contact = forms.CharField(max_length=15)
+    related = forms.ChoiceField(choices=[
+        ('family', 'Family Law'),
+        ('criminal', 'Criminal Law'),
+        ('corporate', 'Corporate Law'),
+        ('other', 'Other')
+    ])

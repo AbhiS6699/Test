@@ -10,9 +10,58 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
+        }
+
+        #legal-services-carousel {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            /* Ensure the navigation buttons are positioned relative to this container */
+
+        }
+
+        #services-carousel-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ensure each slide takes full width and prevents overflow */
+        #legal-services-carousel .swiper-slide {
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .swiper-container {
+            padding: 20px 0;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
         }
 
         header {
@@ -107,15 +156,19 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
                                 <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}"
+                                            src="{% static 'myapp/images/handshake.png' %}"
                                             alt="Partnership Deed">Partnership Deed</a></li>
                                 <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Pvt. Ltd.
+                                            src="{% static 'myapp/images/enterprise.png' %}"
+                                            alt="Pvt. Ltd. Company">Pvt. Ltd.
                                         Company Registration</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">Section 8 Company Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'section_8' %}"><img
+                                            src="{% static 'myapp/images/building.png' %}" alt="Section 8">Section 8
+                                        Company
+                                        Registration</a></li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">LLP Registration</a></li>
+                                            src="{% static 'myapp/images/website.png' %}" alt="LLP">LLP Registration</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -124,10 +177,17 @@
                                 Change in Business
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="changeBusinessDropdown">
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/dissolution.png' %}"
-                                            alt="Dissolution">Dissolution of Deeds</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/options.png' %}"
-                                            alt="Business Options">Business Options</a></li>
+                                <li><a class="dropdown-item" href="{% url 'dissolution_of_partnership' %}"><img
+                                            src="{% static 'myapp/images/disagreement.png' %}"
+                                            alt="Dissolution">Dissolution of
+                                        Deeds</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Director</a></li>
+                                <li><a class="dropdown-item" href="{% url 'remove_director' %}"><img
+                                            src="{% static 'myapp/images/user (1).png' %}" alt="Business Options">Remove
+                                        Director</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Partner</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -136,22 +196,21 @@
                                 Registration
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
-                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Import
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/lawyer.png' %}"
+                                            alt="Partnership Deed">Import
                                         Export License</a></li>
-                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Trademark
+                                <li><a class="dropdown-item" href="{% url 'trade_mark_registration' %}"><img
+                                            src="{% static 'myapp/images/trademark.png' %}"
+                                            alt="Pvt. Ltd. Company">Trademark
                                         Registration</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">Food Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'food_license' %}"><img
+                                            src="{% static 'myapp/images/fast-food.png' %}" alt="Section 8">Food
+                                        Registration</a></li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Gumasta License</a></li>
+                                            src="{% static 'myapp/images/gst.png' %}" alt="LLP">GST Registration</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">MSME Registration</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">GST Registration</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">PF Registration</a></li>
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Registration</a></li>
 
 
 
@@ -163,20 +222,17 @@
                                 Filing & More
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
-                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">GST
+                                <li><a class="dropdown-item" href="{% url 'gst_return_filing' %}"><img
+                                            src="{% static 'myapp/images/gst.png' %}" alt="Partnership Deed">GST
                                         Return Filing</a></li>
-                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">ITR
+                                <li><a class="dropdown-item" href="{% url 'itr_filing' %}"><img
+                                            src="{% static 'myapp/images/tax.png' %}" alt="Pvt. Ltd. Company">ITR
                                         Filing</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">TDS Return Filing</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">PF Return Filing</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">ESIC Filing</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Online Accounting</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tds_return_filing' %}"><img
+                                            src="{% static 'myapp/images/bill.png' %}" alt="Section 8">TDS Return
+                                        Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pf_return_filing' %}"><img
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Return Filing</a></li>
 
 
                             </ul>
@@ -187,29 +243,14 @@
                                 Drafting
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
-                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">Legal
+                                <li><a class="dropdown-item" href="{% url 'legal_drafting' %}"><img
+                                            src="{% static 'myapp/images/compliant.png' %}" alt="Partnership Deed">Legal
                                         Drafting</a></li>
-                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">Rent
+                                <li><a class="dropdown-item" href="{% url 'rent_agreement' %}"><img
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="Pvt. Ltd. Company">Rent
                                         Agreement</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
-                                            alt="Section 8">NOC</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Affidavit</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Will</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Application Form</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Privacy Policy Drafting</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Terms & Condition Drafting</a>
-                                </li>
-
-
-
+                                <li><a class="dropdown-item" href="{% url 'noc' %}"><img
+                                            src="{% static 'images/section8.png' %}" alt="Section 8">NOC</a></li>
 
                             </ul>
                         </li>
@@ -219,24 +260,27 @@
                                 Utilities
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
-                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
-                                            src="{% static 'myapp/images/lawyer.png' %}" alt="Partnership Deed">GST
+                                <li><a class="dropdown-item" href="{% url 'GST_calculator' %}"><img
+                                            src="{% static 'myapp/images/gst.png' %}" alt="GST Calculator">GST
                                         Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
-                                            src="{% static 'images/company.png' %}" alt="Pvt. Ltd. Company">EMI
+                                <li><a class="dropdown-item" href="{% url 'EMI_calculator' %}"><img
+                                            src="{% static 'myapp/images/loan.png' %}" alt="Pvt. Ltd. Company">EMI
                                         Calculator</a></li>
-                                <li><a class="dropdown-item" href="#"><img src="{% static 'images/section8.png' %}"
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/bill.png' %}"
                                             alt="Section 8">TDS Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">SIP Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">FD Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">80U Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">HRA Calculator</a></li>
-                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
-                                            src="{% static 'images/llp.png' %}" alt="LLP">Simple Interest Calculator</a>
+                                <li><a class="dropdown-item" href="{% url 'sip_calculator' %}"><img
+                                            src="{% static 'myapp/images/investment.png' %}" alt="LLP">SIP
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'FD_calculator' %}"><img
+                                            src="{% static 'myapp/images/money.png' %}" alt="LLP">FD Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url '80U_calculator' %}"><img
+                                            src="{% static 'myapp/images/80u.png' %}" alt="LLP">80U Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'HRA_calculator' %}"><img
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="LLP">HRA Calculator</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'simple_calculator' %}"><img
+                                            src="{% static 'myapp/images/calculator.png' %}" alt="LLP">Simple Interest
+                                        Calculator</a>
                                 </li>
 
 
@@ -421,6 +465,16 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 
 </html>

@@ -11,12 +11,88 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.contrib.auth import logout
+from django.http import JsonResponse
+from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib.auth.tokens import default_token_generator
 from .models import CustomUser
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from .forms import ServiceRequestForm
+from django.urls import reverse
+
+
+
+
+def service_request(request):
+    if request.method == 'POST':
+        print("Form submission received")
+        form = ServiceRequestForm(request.POST)
+        if form.is_valid():
+            print("Form is valid")
+            # Extract form data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            contact = form.cleaned_data['contact']
+            related = form.cleaned_data['related']
+
+            # Prepare and send email
+            subject = f"New Service Request from {name}"
+            message = f"""
+            You have received a new service request:
+            
+            Name: {name}
+            Email: {email}
+            Contact: {contact}
+            Related to: {related}
+            """
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [settings.ADMIN_EMAIL]
+
+            send_mail(subject, message, from_email, recipient_list)
+
+            # Redirect after successful submission
+            return redirect('index')
+        else:
+            print("Form is not valid")
+    else:
+        print("GET request received")
+        form = ServiceRequestForm()
+
+    return render(request, 'index.html', {'form': form})
+
+def form_submission_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        contact = request.POST.get('contact')
+        email = request.POST.get('email')
+        city = request.POST.get('city')
+
+        # Prepare the email content
+        subject = 'New Form Submission'
+        message = f"""
+        New form submission received:
+
+        Name: {name}
+        Contact: {contact}
+        Email: {email}
+        City/District: {city}
+        """
+
+        from_email = settings.DEFAULT_FROM_EMAIL
+        recipient_list = ['22f2000679@ds.study.iitm.ac.in']  # Replace with your email address
+
+        # Send the email
+        send_mail(subject, message, from_email, recipient_list)
+
+        # Redirect to a thank you page or the same page with a success message
+        return HttpResponseRedirect(reverse('index'))  # Replace with your thank you page URL
+
+    # If not a POST request, redirect to the homepage or display an error
+    return HttpResponseRedirect(reverse('index'))  # Replace with your homepage URL
 
 
 

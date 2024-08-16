@@ -8,299 +8,315 @@
     <title>LegalSathi</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.9/dist/css/splide.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Splide/3.6.9/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #legal-services-carousel {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            /* Ensure the navigation buttons are positioned relative to this container */
+
+        }
+
+        #services-carousel-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Ensure each slide takes full width and prevents overflow */
+        #legal-services-carousel .swiper-slide {
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .swiper-container {
+            padding: 20px 0;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            height: auto;
+        }
 
 
+        .swiper-button-next,
+        .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #2c3e50 !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #2c3e50 !important;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-item:hover .nav-link {
+            color: black !important;
+            border-radius: 8px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        .dropdown-menu {
+            border-radius: 8px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+
+        .dropdown-item {
+            font-weight: 500;
+            color: #2c3e50;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: black !important;
+            border-radius: 6px;
+        }
+
+        .dropdown-item img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-custom {
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 20px;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            color: black;
+        }
+    </style>
 </head>
 
-<style>
-    header {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+<body class="bg-light">
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <span class="text-blue-600">Legal</span>Sathi
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Start Business
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'partnership-deed' %}"><img
+                                            src="{% static 'myapp/images/handshake.png' %}"
+                                            alt="Partnership Deed">Partnership Deed</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pvt_ltd_registration' %}"><img
+                                            src="{% static 'myapp/images/enterprise.png' %}"
+                                            alt="Pvt. Ltd. Company">Pvt. Ltd.
+                                        Company Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'section_8' %}"><img
+                                            src="{% static 'myapp/images/building.png' %}" alt="Section 8">Section 8
+                                        Company
+                                        Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'myapp/images/website.png' %}" alt="LLP">LLP Registration</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="changeBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Change in Business
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="changeBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'dissolution_of_partnership' %}"><img
+                                            src="{% static 'myapp/images/disagreement.png' %}"
+                                            alt="Dissolution">Dissolution of
+                                        Deeds</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Director</a></li>
+                                <li><a class="dropdown-item" href="{% url 'remove_director' %}"><img
+                                            src="{% static 'myapp/images/user (1).png' %}" alt="Business Options">Remove
+                                        Director</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/user.png' %}"
+                                            alt="Business Options">Add Partner</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Registration
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/lawyer.png' %}"
+                                            alt="Partnership Deed">Import
+                                        Export License</a></li>
+                                <li><a class="dropdown-item" href="{% url 'trade_mark_registration' %}"><img
+                                            src="{% static 'myapp/images/trademark.png' %}"
+                                            alt="Pvt. Ltd. Company">Trademark
+                                        Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'food_license' %}"><img
+                                            src="{% static 'myapp/images/fast-food.png' %}" alt="Section 8">Food
+                                        Registration</a></li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'myapp/images/gst.png' %}" alt="LLP">GST Registration</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'llp_registration' %}"><img
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Registration</a></li>
 
-    .custom-splide__pagination__page.is-active {
-        background-color: #ff4757;
-    }
-
-    .custom-splide__pagination {
-        display: none;
-        /* Hide pagination dots */
-    }
-
-    .custom-splide__slide img {
-        border-radius: 8px;
-        transition: transform 0.3s ease-in-out;
-        width: 30%;
-        height: auto;
-    }
-
-    .splide__track {
-        margin: 0 20px;
-    }
-
-    @media (min-width: 1024px) {
-        .splide__track {
-            margin: 0 40px;
-        }
-    }
 
 
-    .custom-splide__slide img:hover {
-        transform: scale(1.05);
-    }
-
-    .custom-splide__slide {
-        padding: 5px;
-    }
-
-    .custom-card {
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .custom-card:hover {
-        transform: translateY(-5px);
-    }
-
-
-    .splide__slide img {
-        border-radius: 10%;
-    }
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Filing & More
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'gst_return_filing' %}"><img
+                                            src="{% static 'myapp/images/gst.png' %}" alt="Partnership Deed">GST
+                                        Return Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'itr_filing' %}"><img
+                                            src="{% static 'myapp/images/tax.png' %}" alt="Pvt. Ltd. Company">ITR
+                                        Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tds_return_filing' %}"><img
+                                            src="{% static 'myapp/images/bill.png' %}" alt="Section 8">TDS Return
+                                        Filing</a></li>
+                                <li><a class="dropdown-item" href="{% url 'pf_return_filing' %}"><img
+                                            src="{% static 'myapp/images/pf.png' %}" alt="LLP">PF Return Filing</a></li>
 
 
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Drafting
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'legal_drafting' %}"><img
+                                            src="{% static 'myapp/images/compliant.png' %}" alt="Partnership Deed">Legal
+                                        Drafting</a></li>
+                                <li><a class="dropdown-item" href="{% url 'rent_agreement' %}"><img
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="Pvt. Ltd. Company">Rent
+                                        Agreement</a></li>
+                                <li><a class="dropdown-item" href="{% url 'noc' %}"><img
+                                            src="{% static 'images/section8.png' %}" alt="Section 8">NOC</a></li>
 
-    .rounded-md {
-        border-radius: 10px;
-    }
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="startBusinessDropdown" role="button"
+                                aria-expanded="false">
+                                Utilities
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="startBusinessDropdown">
+                                <li><a class="dropdown-item" href="{% url 'GST_calculator' %}"><img
+                                            src="{% static 'myapp/images/gst.png' %}" alt="GST Calculator">GST
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'EMI_calculator' %}"><img
+                                            src="{% static 'myapp/images/loan.png' %}" alt="Pvt. Ltd. Company">EMI
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="{% static 'myapp/images/bill.png' %}"
+                                            alt="Section 8">TDS Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'sip_calculator' %}"><img
+                                            src="{% static 'myapp/images/investment.png' %}" alt="LLP">SIP
+                                        Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'FD_calculator' %}"><img
+                                            src="{% static 'myapp/images/money.png' %}" alt="LLP">FD Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url '80U_calculator' %}"><img
+                                            src="{% static 'myapp/images/80u.png' %}" alt="LLP">80U Calculator</a></li>
+                                <li><a class="dropdown-item" href="{% url 'HRA_calculator' %}"><img
+                                            src="{% static 'myapp/images/agreement.png' %}" alt="LLP">HRA Calculator</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'simple_calculator' %}"><img
+                                            src="{% static 'myapp/images/calculator.png' %}" alt="LLP">Simple Interest
+                                        Calculator</a>
+                                </li>
 
-    .splide__pagination {
-        display: none;
-        /* Hide pagination dots */
-    }
-
-    .splide__pagination__page.is-active {
-        background-color: #ff4757;
-    }
 
 
-    .dropdown-menu {
-        transition: visibility 0.2s, opacity 0.2s ease-in-out;
-        visibility: hidden;
-        opacity: 0;
-    }
 
-    .dropdown:hover .dropdown-menu {
-        visibility: visible;
-        opacity: 1;
-    }
 
-    .dropdown-menu::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: 0;
-        right: 0;
-        height: 10px;
-        background: transparent;
-    }
 
-    .animated-text {
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .carousel {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .carousel-inner {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .carousel-item {
-        min-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .service-icon {
-        width: 48px;
-        height: 48px;
-        transition: transform 0.2s;
-    }
-
-    .service-icon:hover {
-        transform: scale(1.1);
-    }
-
-    .service-name {
-        font-size: 0.875rem;
-        color: #333;
-        text-align: center;
-    }
-
-    .carousel-control {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 0.5rem;
-        cursor: pointer;
-        border-radius: 50%;
-        display: none;
-    }
-
-    .carousel:hover .carousel-control {
-        display: block;
-    }
-
-    .carousel-control.left {
-        left: 1rem;
-    }
-
-    .carousel-control.right {
-        right: 1rem;
-    }
-
-    @media (max-width: 768px) {
-        .carousel-item {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .carousel-item>div {
-            width: 100%;
-        }
-    }
-</style>
-
-<body class="bg-white">
-    <header class="bg-white h-20 shadow">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex items-center justify-between">
-                <div class="text-3xl font-bold text-gray-800">
-                    <a href="{% url 'index' %}"><span class="text-blue-600">Legal</span>Sathi</a>
+                            </ul>
+                        </li>
+                        <!-- Additional dropdowns -->
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-custom" href="{% url 'login' %}">Login</a>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </div>
-                <div class="flex md:hidden">
-                    <button id="nav-toggle" class="focus:outline-none">
-                        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <nav id="nav-menu" class="hidden md:flex md:flex-1 md:justify-center md:space-x-8">
-                    <div class="dropdown relative">
-                        <a href="#" class="text-gray-800 font-bold hover:text-gray-600">Start Business</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="{% url 'partnership-deed' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Partnership Deed</a>
-                            <a href="{% url 'pvt_ltd_registration' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Pvt. Ltd.Company
-                                Registration</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Section 8 Company
-                                Registration</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-200">Section 8 Company Registration</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Annual Compliance</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">CMA Report</a>
-                        </div>
-                    </div>
-                    <div class="dropdown relative">
-                        <a href="#services" class="text-gray-800 font-bold hover:text-gray-600">Change in Business</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dissolution of Deeds</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Business Options</a>
-                        </div>
-                    </div>
-                    <div class="dropdown relative">
-                        <a href="#testimonials" class="text-gray-800 font-bold hover:text-gray-600">Registration</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Import Export
-                                License</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">MSME Registration</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Registration</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gumasta License</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Trade Mark
-                                Registration</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Food License</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Registration</a>
-                        </div>
-                    </div>
-                    <div class="dropdown relative">
-                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Filing & More</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Return Filing</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ITR Filing</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Return Filing</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">PF Return Filing</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">ESIC Filing</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Online Accounting</a>
-                        </div>
-                    </div>
-                    <div class="dropdown relative">
-                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Drafting</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Legal Drafting</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Rent Agreement</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">NOC</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Affidavit</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Power of Attorney</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Will</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Application Form</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Privacy Policy
-                                Drafting</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Terms & Conditions
-                                Drafting</a>
-                        </div>
-                    </div>
-                    <div class="dropdown relative">
-                        <a href="#contact" class="text-gray-800 font-bold hover:text-gray-600">Utilities</a>
-                        <div class="dropdown-menu absolute hidden bg-white shadow-md mt-2 rounded-lg">
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">GST Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">EMI Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">TDS Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">SIP Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">FD Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">80U Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">HRA Calculator</a>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Simple Interest
-                                Calculator</a>
-                        </div>
-                    </div>
-                </nav>
-                <div class="hidden md:flex space-x-2">
-                    <a href="#" class="px-4 py-2 bg-gray-800 text-white rounded">Login</a>
-                </div>
-            </div>
-            <nav id="nav-mobile-menu" class="hidden flex-col space-y-2 mt-3 md:hidden">
-                <a href="#" class="block text-gray-800 hover:text-gray-600">Home</a>
-                <a href="#services" class="block text-gray-800 hover:text-gray-600">Services</a>
-                <a href="#testimonials" class="block text-gray-800 hover:text-gray-600">Testimonials</a>
-                <a href="#contact" class="block text-gray-800 hover:text-gray-600">Contact</a>
-                <a href="#" class="block px-4 py-2 bg-gray-800 text-white rounded">Login</a>
-                <a href="#" class="block px-4 py-2 bg-blue-600 text-white rounded">Sign Up</a>
             </nav>
         </div>
     </header>
-    <script>
-        document.getElementById('nav-toggle').addEventListener('click', function () {
-            var navMenu = document.getElementById('nav-menu');
-            var navMobileMenu = document.getElementById('nav-mobile-menu');
-            navMenu.classList.toggle('hidden');
-            navMobileMenu.classList.toggle('hidden');
-        });
-    </script>
 
     <!-- Hero Section -->
-    <section class="bg-white mx-8 py-16">
+    <section class="bg-white mx-auto py-16">
         <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center">
             <div class="lg:w-2/3 pr-8">
                 <h1 class="text-5xl font-bold text-blue-900 leading-snug">Legal Drafting Services - We Handle Your Legal
@@ -319,25 +335,29 @@
                         class="text-gray-600">(Up to 10 Pages. Including GST)</span></h2>
                 <form action="#" class="mt-6 space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700">Name *</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name <span
+                                class="text-red-500">*</span></label>
                         <input type="text" id="name"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
                             placeholder="Enter your name">
                     </div>
                     <div>
-                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number *</label>
+                        <label for="contact" class="block text-sm font-medium text-gray-700">Contact Number <span
+                                class="text-red-500">*</span></label>
                         <input type="text" id="contact"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
                             placeholder="Enter your contact number">
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email <span
+                                class="text-red-500">*</span></label>
                         <input type="email" id="email"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
                             placeholder="Enter your email">
                     </div>
                     <div>
-                        <label for="city" class="block text-sm font-medium text-gray-700">City/district *</label>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City/district <span
+                                class="text-red-500">*</span></label>
                         <input type="text" id="city"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500"
                             placeholder="Enter your city/district">
@@ -351,7 +371,7 @@
     </section>
 
     <!-- Legal Drafting Benefits Section -->
-    <section id="benefits" class="bg-white mx-8 py-16">
+    <section id="benefits" class="bg-white mx-auto py-16">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl font-bold text-blue-900 mb-8">Benefits of Legal Drafting</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -390,7 +410,7 @@
     </section>
 
     <!-- Legal Drafting Process Section -->
-    <section id="process" class="bg-white mx-8 py-16">
+    <section id="process" class="bg-white mx-auto py-16">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl font-bold text-blue-900 mb-8">Legal Drafting Process</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -424,7 +444,7 @@
     </section>
 
     <!-- FAQs Section -->
-    <section id="faqs" class="bg-white mx-8 py-16">
+    <section id="faqs" class="bg-white mx-auto py-16">
         <div class="container mx-auto">
             <h2 class="text-4xl font-bold text-center text-blue-900 mb-8">Frequently Asked Questions</h2>
             <div class="bg-gray-100 p-8 rounded-md shadow-md">
@@ -458,7 +478,7 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section id="why-choose-us" class="bg-white mx-8 py-16">
+    <section id="why-choose-us" class="bg-white mx-auto py-16">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl font-bold text-blue-900 mb-8">Why Choose legalsathi for Legal Drafting?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -568,6 +588,16 @@
         });
     </script>
 
+    <script>
+        document.getElementById('nav-toggle').addEventListener('click', function () {
+            var menu = document.getElementById('nav-mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 
 </html>
